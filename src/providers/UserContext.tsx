@@ -1,5 +1,5 @@
 import { createContext, useState } from 'react';
-import { api } from "../service/api";
+
 
 export const UserContext = createContext({});
 
@@ -15,12 +15,10 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
   const login = async () => {
     try {
       const response = await api.post("/sessions", {
-        email: "johndoe@email.com",
-        password: "123456"
+
       });
   
-      // Tratar a resposta aqui...
-  
+   
     } catch (error) {
       console.error("Error logging in:", error);
     }

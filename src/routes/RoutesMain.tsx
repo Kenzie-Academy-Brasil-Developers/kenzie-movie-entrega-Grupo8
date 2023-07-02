@@ -1,7 +1,9 @@
 import { Routes, Route } from "react-router-dom";
 import { HomePage } from "../pages/HomePage";
 import { RegisterPage } from "../pages/RegisterPage";
-import { MoviesPage } from "../pages/MoviesPage";
+
+import { MovieDetailsPage } from "../pages/MoviesListPage/MovieDetailsPage";
+import { MoviesListPage } from "../pages/MoviesListPage";
 
 
 export const RoutesMain = () => {
@@ -9,7 +11,8 @@ export const RoutesMain = () => {
     <Routes>
       <Route path="/" element={<HomePage />} />
       <Route path="/register" element={<RegisterPage />} />
-      <Route path="/movies" element={<MoviesPage />} />
+      <Route path="/movies" element={<MoviesListPage />} />
+      <Route path="/movies/details" element={<MovieDetailsPage />} />
     </Routes>
   );
 };

@@ -1,11 +1,12 @@
-import { RoutesMain } from './routes/RoutesMain'
+import { MoviesProvider } from "./providers/MovieContext";
+import { RoutesMain } from "./routes/RoutesMain";
 
 export const App = () => {
-
   return (
     <>
-    <RoutesMain/>
-     <h1>teste</h1>
+      <MoviesProvider>
+        <RoutesMain />
+      </MoviesProvider>
     </>
-  )
-}
+  );
+};
