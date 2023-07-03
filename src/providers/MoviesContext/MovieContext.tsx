@@ -1,4 +1,4 @@
-import React, { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect } from "react";
 import { api } from "../../service/api";
 import { Slide, toast } from "react-toastify";
 import { IMoviesProviderProps, IMovie, IReview, IMoviesContext } from "./@types";
@@ -151,6 +151,7 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
     <MoviesContext.Provider
       value={{
         movies,
+        reviews,
         setMovies,
         getMovies,
         handleDelete,

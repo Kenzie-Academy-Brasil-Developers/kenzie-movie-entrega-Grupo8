@@ -21,6 +21,7 @@ export interface IReview {
 
 export interface IMoviesContext {
   movies: IMovie[];
+  reviews: IReview[];
   setMovies: React.Dispatch<React.SetStateAction<IMovie[]>>;
   getMovies: () => Promise<void>;
   handleDelete: (reviewId: number) => Promise<void>;
