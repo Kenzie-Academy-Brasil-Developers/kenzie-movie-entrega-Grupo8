@@ -32,6 +32,6 @@ export interface IMoviesContext {
       review: any;
     }
   ) => Promise<void>;
-  handleMoviesDetails: (moviesId: number) => Promise<void>; // ajuste do tipo do parâmetro
+  handleMoviesDetails: (moviesId: number) => Promise<void>; 
   moviesDetails: IMovie[];
 }

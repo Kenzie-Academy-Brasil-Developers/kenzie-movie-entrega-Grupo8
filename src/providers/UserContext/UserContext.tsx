@@ -43,6 +43,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
       setUser(response.data.user);
       localStorage.setItem('@kenzieMovies:token', response.data.accessToken)
       localStorage.setItem('@kenzieMovies:user', response.data.user.name)
+      localStorage.setItem('@kenzieMovies:userId', response.data.user.id)
       toast.success("Usuário Logado com Sucesso!", {
         transition: Slide,
         autoClose: 2000,
