@@ -1,15 +1,17 @@
+import { ReactNode } from "react";
+
 export interface IMoviesProviderProps {
   children: React.ReactNode;
 }
 
 export interface IMovie {
+  duration?: ReactNode;
   image: string | undefined;
   id: number;
   name: string;
   type: string;
   tempo: number;
   synopsis: string;
-  image:string;
   reviews?: IReview[];
 }
 
