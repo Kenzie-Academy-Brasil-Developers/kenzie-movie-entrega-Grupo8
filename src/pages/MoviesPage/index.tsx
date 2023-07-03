@@ -1,4 +1,4 @@
-export const MoviesListPage = () => {
+export const MoviesPage = () => {
     return(
         <h1>MoviesPage</h1>
     )
