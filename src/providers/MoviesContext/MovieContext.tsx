@@ -1,41 +1,28 @@
 import React, { createContext, useState, useEffect } from "react";
-import { api } from "../service/api";
+import { api } from "../../service/api";
 import { Slide, toast } from "react-toastify";
+import { IMoviesProviderProps, IMovie, IReview, IMoviesContext } from "./@types";
+import { useNavigate } from "react-router-dom";
 
-export const MoviesContext = createContext({});
+export const MoviesContext = createContext({} as IMoviesContext);
 
-interface IMoviesProviderProps {
-  children: React.ReactNode;
-}
-
-interface IMovie {
-  id: number;
-  name: string;
-  type: string;
-  duration: number;
-  synopsis: string;
-  reviews?: IReview[];
-}
-
-interface IReview {
-  id: number;
-  movieId: number;
-  userId: number;
-  score: number;
-  description: string;
-}
 
 export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
+
+  const navigate = useNavigate();
+
+
   const [movies, setMovies] = useState<IMovie[]>([]);
   const [reviews, setReviews] = useState<IReview[]>([]);
   const [moviesDetails, setMoviesDetails] = useState<IMovie[]>([]);
+  console.log('movies', movies)
 
   console.log(moviesDetails); 
 
   const getMovies = async () => {
     try {
       const response = await api.get("/movies");
-      console.log(response.data);
+      console.log('response',response.data);
       setMovies(response.data);
     } catch (error) {
       console.error("Error retrieving movies:", error);
@@ -47,29 +34,27 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
     getMovies();
   }, []);
 
-  const handleMoviesDetails = async (moviesId: IMovie) => {
+  const handleMoviesDetails = async (moviesId: any) => {
     const tokenWithQuotes = localStorage.getItem("@kenzieMovies:token");
 
     if (tokenWithQuotes) {
       const token = tokenWithQuotes.replace(/"/g, "");
 
       try {
-        const { data } = await api.get(`/movies/${token}?_embed=reviews`, {
+        const { data } = await api.get(`/movies/${moviesId}?_embed=reviews`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         });
 
         setMoviesDetails(data);
+        navigate('/movies/details');
+       
       } catch (error) {
         console.error("Error fetching movie details:", error);
       }
     }
   };
-
-  useEffect(() => {
-    handleMoviesDetails(moviesId);
-  }, []);
 
   const createReview = async (formData: IReview) => {
     try {
@@ -171,7 +156,7 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
         handleDelete,
         createReview,
         handleUpdateReviews,
-        handleMoviesDetails,
+        handleMoviesDetails, 
         moviesDetails,
       }}
     >
