@@ -1,35 +1,40 @@
-import React, { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect } from "react";
 import { api } from "../../service/api";
 import { Slide, toast } from "react-toastify";
-import { IMoviesProviderProps, IMovie, IReview, IMoviesContext } from "./@types";
+import {
+  IMoviesProviderProps,
+  IMovie,
+  IReview,
+  IMoviesContext,
+} from "./@types";
 import { useNavigate } from "react-router-dom";
 
 export const MoviesContext = createContext({} as IMoviesContext);
 
-
 export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
-
   const navigate = useNavigate();
-
 
   const [movies, setMovies] = useState<IMovie[]>([]);
   const [reviews, setReviews] = useState<IReview[]>([]);
   const [moviesDetails, setMoviesDetails] = useState<IMovie[]>([]);
-  console.log('movies', movies)
-
-  console.log(moviesDetails); 
 
   const getMovies = async () => {
     try {
       const response = await api.get("/movies");
-      console.log('response',response.data);
-      setMovies(response.data);
+      console.log(response.data);
+      const movies = response.data;
+
+      for (const movie of movies) {
+        const { data } = await api.get(`/movies/${movie.id}?_embed=reviews`);
+        movie.reviews = data.reviews;
+      }
+
+      setMovies(movies);
     } catch (error) {
       console.error("Error retrieving movies:", error);
       setMovies([]);
     }
   };
-
   useEffect(() => {
     getMovies();
   }, []);
@@ -48,8 +53,7 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
         });
 
         setMoviesDetails(data);
-        navigate('/movies/details');
-       
+        navigate("/movies/details");
       } catch (error) {
         console.error("Error fetching movie details:", error);
       }
@@ -81,7 +85,10 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
     }
   };
 
-  const handleUpdateReviews = async (reviewId: number, formData: { review: any }) => {
+  const handleUpdateReviews = async (
+    reviewId: number,
+    formData: { review: any }
+  ) => {
     const tokenWithQuotes = localStorage.getItem("@kenzieMovies:token");
 
     if (tokenWithQuotes) {
@@ -111,10 +118,13 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
           autoClose: 2000,
         });
       } catch (error) {
-        toast.error("Ocorreu um erro ao tentar realizar a operação solicitada.", {
-          transition: Slide,
-          autoClose: 2000,
-        });
+        toast.error(
+          "Ocorreu um erro ao tentar realizar a operação solicitada.",
+          {
+            transition: Slide,
+            autoClose: 2000,
+          }
+        );
       }
     }
   };
@@ -139,10 +149,13 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
           autoClose: 2000,
         });
       } catch (error) {
-        toast.error("Ocorreu um erro ao tentar realizar a operação solicitada.", {
-          transition: Slide,
-          autoClose: 2000,
-        });
+        toast.error(
+          "Ocorreu um erro ao tentar realizar a operação solicitada.",
+          {
+            transition: Slide,
+            autoClose: 2000,
+          }
+        );
       }
     }
   };
@@ -156,7 +169,7 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
         handleDelete,
         createReview,
         handleUpdateReviews,
-        handleMoviesDetails, 
+        handleMoviesDetails,
         moviesDetails,
       }}
     >

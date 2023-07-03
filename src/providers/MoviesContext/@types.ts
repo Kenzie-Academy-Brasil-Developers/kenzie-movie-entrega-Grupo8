@@ -3,6 +3,7 @@ export interface IMoviesProviderProps {
 }
 
 export interface IMovie {
+  image: string | undefined;
   id: number;
   name: string;
   type: string;
