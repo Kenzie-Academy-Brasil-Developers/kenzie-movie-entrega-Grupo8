@@ -6,8 +6,9 @@ export interface IMovie {
   id: number;
   name: string;
   type: string;
-  duration: number;
+  tempo: number;
   synopsis: string;
+  image:string;
   reviews?: IReview[];
 }
 
