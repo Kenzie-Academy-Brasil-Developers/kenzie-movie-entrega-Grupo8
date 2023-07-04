@@ -42,7 +42,7 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
   }, []);
 
   const handleMoviesDetails = async (moviesId: number) => {
-   
+    console.log(moviesId)
       try {
         const response = await api.get(`/movies/${moviesId}?_embed=reviews`);
 
