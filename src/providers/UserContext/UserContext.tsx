@@ -33,24 +33,18 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
     }
   }
 
-
-  // Comentários: login;
-
   const userLogIn = async (formData: any) => {
     try {
-      const response = await api.post<IUserLogInResponse>("/login", formData); 
+      const response = await api.post<IUserLogInResponse>("/login", formData);
       console.log(response.data);
       setUser(response.data.user);
-      localStorage.setItem('@kenzieMovies:token', response.data.accessToken)
-      localStorage.setItem('@kenzieMovies:user', response.data.user.name)
-      localStorage.setItem('@kenzieMovies:userId', response.data.user.id)
+      localStorage.setItem('@kenzieMovies:token', response.data.accessToken);
+      localStorage.setItem('@kenzieMovies:user', JSON.stringify(response.data.user));
       toast.success("Usuário Logado com Sucesso!", {
         transition: Slide,
         autoClose: 2000,
-      });   
-
+      });
       navigate('/movies');
-
     } catch (error) {
       toast.error("Ocorreu um erro ao tentar realizar a operação solicitada.", {
         transition: Slide,
@@ -58,14 +52,14 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
       });
     }
   };
-
-  const userLogout = () =>{
+  
+  const userLogout = () => {
     setUser(null);
     localStorage.removeItem('@kenzieMovies:token');
-    navigate('/')
-  }
+    localStorage.removeItem('@kenzieMovies:user');
+    navigate('/');
+  };
   
-
   return (
     <UserContext.Provider value={{user, userSignUp, userLogIn, userLogout }}>
       {children}
