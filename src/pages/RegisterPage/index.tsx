@@ -1,3 +1,9 @@
+import { FormRegister } from "../../Components/FormRegister/index"
+
 export const RegisterPage = () => {
-  return <main>RegisterPage</main>;
+  return(
+    <>
+      <FormRegister />
+    </>
+  ) 
 };
