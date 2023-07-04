@@ -1,12 +1,10 @@
 import { Routes, Route } from "react-router-dom";
 import { HomePage } from "../pages/HomePage";
 import { RegisterPage } from "../pages/RegisterPage";
-
-import { MovieDetailsPage } from "../pages/MoviesPage/MovieDetailsPage";
 import { MoviesPage } from "../pages/MoviesPage";
 import { LoginPage } from "../pages/LoginPage";
 import { PublicRoutes } from "./PublicRoutes";
-import { ProtectedRoutes } from "./ProtectedRoutes";
+import { MovieDetailsPage } from "../pages/MovieDetailsPage";
 
 export const RoutesMain = () => {
   return (
@@ -16,10 +14,8 @@ export const RoutesMain = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
       </Route>
-     {/*  <Route element={<ProtectedRoutes />}> */}
-        <Route path="/movies" element={<MoviesPage />} />
-        <Route path="/movies/details" element={<MovieDetailsPage />} />
-     {/*  </Route> */}
+      <Route path="/movies" element={<MoviesPage />} />
+      <Route path="/movies/:id" element={<MovieDetailsPage />} />
     </Routes>
   );
 };

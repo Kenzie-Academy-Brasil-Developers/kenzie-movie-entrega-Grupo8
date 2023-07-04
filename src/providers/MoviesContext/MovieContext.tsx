@@ -14,11 +14,23 @@ export const MoviesContext = createContext({} as IMoviesContext);
 export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
   const navigate = useNavigate();
 
+  const [isOpen, setIsOpen] = useState(false)
+  /* 
+  const [addReview, setAddReview] = useState(null)
+  const [upDateReview, setUpDateReview] = useState(null)
+  const [deleteReview, setDeleteReview] = useState(null)
+
+ */
+
+
   const [movies, setMovies] = useState<IMovie[]>([]);
+  console.log("moviesTest", movies)
   const [reviews, setReviews] = useState<IReview[]>([]);
   const [moviesDetails, setMoviesDetails] = useState<IMovie[]>([]);
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   console.log('moviesDetails',moviesDetails);
+
+  /* Listar todos os Filmes */
 
   const getMovies = async () => {
     try {
@@ -41,19 +53,23 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
     getMovies();
   }, []);
 
-  const handleMoviesDetails = async (moviesId: number) => {
+/*  Navegar para a nova pagina com os detalhes do filmes */
+
+const handleMoviesDetails = async (moviesId: number) => {
     console.log(moviesId)
     
       try {
-        const response = await api.get(`/movies/${moviesId}?_embed=reviews`);
+        const {data} = await api.get(`/movies/${moviesId}?_embed=reviews`);
+        console.log("handleMoviesDetails", data)
 
-        setMoviesDetails(response.data);
-        navigate("/movies/details");
+        setMoviesDetails(data);
+        navigate(`/movies/${moviesId}`);
       } catch (error) {
         console.error("Error fetching movie details:", error);
       }
     
-  };
+  }; 
+ 
 
   const createReview = async (formData: IReview) => {
     try {

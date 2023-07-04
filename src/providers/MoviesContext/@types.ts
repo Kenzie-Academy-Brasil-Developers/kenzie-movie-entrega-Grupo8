@@ -1,3 +1,5 @@
+import { ReactNode } from "react";
+
 export interface IMoviesProviderProps {
   children: React.ReactNode;
 };
@@ -12,7 +14,9 @@ export interface IMovie {
   tempo: number;
   synopsis: string;
   reviews?: IReview[];
-};
+  moviesDetails?: IMovie | null;
+}
+
 
 
 export interface IReview {
@@ -40,5 +44,5 @@ export interface IMoviesContext {
     }
   ) => Promise<void>;
   handleMoviesDetails: (moviesId: number) => Promise<void>;
-  moviesDetails: IMovie | null;
+  moviesDetails?: IMovie | null;
 };
