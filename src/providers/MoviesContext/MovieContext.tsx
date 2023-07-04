@@ -18,7 +18,7 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
   const [reviews, setReviews] = useState<IReview[]>([]);
   const [moviesDetails, setMoviesDetails] = useState<IMovie[]>([]);
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
-  console.log(currentCardIndex)
+  console.log('moviesDetails',moviesDetails);
 
   const getMovies = async () => {
     try {
@@ -41,25 +41,17 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
     getMovies();
   }, []);
 
-  const handleMoviesDetails = async (moviesId: any) => {
-    const tokenWithQuotes = localStorage.getItem("@kenzieMovies:token");
-
-    if (tokenWithQuotes) {
-      const token = tokenWithQuotes.replace(/"/g, "");
-
+  const handleMoviesDetails = async (moviesId: number) => {
+   
       try {
-        const { data } = await api.get(`/movies/${moviesId}?_embed=reviews`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await api.get(`/movies/${moviesId}?_embed=reviews`);
 
-        setMoviesDetails(data);
+        setMoviesDetails(response.data);
         navigate("/movies/details");
       } catch (error) {
         console.error("Error fetching movie details:", error);
       }
-    }
+    
   };
 
   const createReview = async (formData: IReview) => {
@@ -168,7 +160,7 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
         movies,
         reviews,
         setMovies,
-        currentCardIndex, 
+        currentCardIndex,
         setCurrentCardIndex,
         getMovies,
         handleDelete,

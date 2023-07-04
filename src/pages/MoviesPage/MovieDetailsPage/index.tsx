@@ -1,5 +1,7 @@
+import { MoviesDetailsSection } from "../../../components/Section/MoviesDetailsSection"
+
 export const MovieDetailsPage = () => {
     return(
-        <h1>MovieDetailsPage</h1>
+        <MoviesDetailsSection/>
     )
 }

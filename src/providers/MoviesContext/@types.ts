@@ -1,6 +1,6 @@
 export interface IMoviesProviderProps {
   children: React.ReactNode;
-}
+};
 
 export interface IMovie {
   score: React.ReactNode;
@@ -12,16 +12,17 @@ export interface IMovie {
   tempo: number;
   synopsis: string;
   reviews?: IReview[];
-}
+};
 
 
 export interface IReview {
+  name: ReactNode;
   id: number;
   movieId: number;
   userId: number;
   score: number;
   description: string;
-}
+};
 
 export interface IMoviesContext {
   movies: IMovie[];
@@ -38,6 +39,6 @@ export interface IMoviesContext {
       review: any;
     }
   ) => Promise<void>;
-  handleMoviesDetails: (moviesId: number) => Promise<void>; 
-  moviesDetails: IMovie[];
-}
+  handleMoviesDetails: (moviesId: number) => Promise<void>;
+  moviesDetails: IMovie | null;
+};

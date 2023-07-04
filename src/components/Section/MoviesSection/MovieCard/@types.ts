@@ -10,6 +10,7 @@ export interface Movie {
 }
 
 export interface MovieCardProps {
+  handleMoviesDetails: (movieId: number) => void;
   movie: {
     image: string;
     score: React.ReactNode;
