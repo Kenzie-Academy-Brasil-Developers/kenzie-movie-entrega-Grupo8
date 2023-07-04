@@ -1,11 +1,10 @@
-import { ReactNode } from "react";
-
 export interface IMoviesProviderProps {
   children: React.ReactNode;
 }
 
 export interface IMovie {
-  duration?: ReactNode;
+  score: React.ReactNode;
+  duration?: string;
   image: string | undefined;
   id: number;
   name: string;
@@ -14,6 +13,7 @@ export interface IMovie {
   synopsis: string;
   reviews?: IReview[];
 }
+
 
 export interface IReview {
   id: number;
@@ -27,6 +27,8 @@ export interface IMoviesContext {
   movies: IMovie[];
   reviews: IReview[];
   setMovies: React.Dispatch<React.SetStateAction<IMovie[]>>;
+  currentCardIndex: number;
+  setCurrentCardIndex: React.Dispatch<React.SetStateAction<number>>;
   getMovies: () => Promise<void>;
   handleDelete: (reviewId: number) => Promise<void>;
   createReview: (formData: IReview) => Promise<void>;

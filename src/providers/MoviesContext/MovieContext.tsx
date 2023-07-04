@@ -17,6 +17,8 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
   const [movies, setMovies] = useState<IMovie[]>([]);
   const [reviews, setReviews] = useState<IReview[]>([]);
   const [moviesDetails, setMoviesDetails] = useState<IMovie[]>([]);
+  const [currentCardIndex, setCurrentCardIndex] = useState(0);
+  console.log(currentCardIndex)
 
   const getMovies = async () => {
     try {
@@ -166,6 +168,8 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
         movies,
         reviews,
         setMovies,
+        currentCardIndex, 
+        setCurrentCardIndex,
         getMovies,
         handleDelete,
         createReview,
