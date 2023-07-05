@@ -20,5 +20,7 @@ export interface IUserProviderProps {
     userSignUp: (formData: TRegisterFormValues) => Promise<void>;
     userLogIn: (formData: TRegisterFormValues) => Promise<void>;
     userLogout: () => void;
+    firstLetter: string | undefined;
+    userName: string | undefined;
   }
   
