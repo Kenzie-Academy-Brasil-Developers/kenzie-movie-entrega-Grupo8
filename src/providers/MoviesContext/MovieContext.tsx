@@ -6,6 +6,7 @@ import {
   IMovie,
   IReview,
   IMoviesContext,
+  IMovieDetails,
 } from "./@types";
 import { useNavigate } from "react-router-dom";
 
@@ -27,7 +28,7 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
   console.log("moviesTest", movies)
   const [reviews, setReviews] = useState<IReview[]>([]);
   console.log("reviews", reviews)
-  const [moviesDetails, setMoviesDetails] = useState<IMovie[]>([]);
+  const [moviesDetails, setMoviesDetails] = useState<IMovieDetails[]>([]);
   console.log("moviesDetails", moviesDetails)
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   console.log('currentCardIndex',currentCardIndex);
@@ -54,7 +55,7 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
     getMovies();
   }, []);
 
-  const handleMoviesDetails = async (moviesId: number) => {
+  /* const handleMoviesDetails = async (moviesId: number) => {
     console.log(moviesId);
   
     try {
@@ -92,17 +93,55 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
       console.error("Error fetching movie details:", error);
     }
   };
+   */
+
+  const handleMoviesDetails = async (moviesId: number) => {
+    console.log(moviesId);
   
+    try {
+      const token = localStorage.getItem("@kenzieMovies:token")?.replace(/"/g, "");
+      const { data } = await api.get(`/movies/${moviesId}?_embed=reviews`);
+      console.log("handleMoviesDetails", data);
+  
+      const updatedReviews = await Promise.all(
+        data.reviews.map(async (review: IReview) => {
+          console.log('review', review);
+          const userResponse = await api.get(`/users/${review.userId}`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          console.log('review.userId', review.userId);
+  
+          let userName = userResponse.data.name;
+          console.log("userName", userName);
+
+          if (userName === 'anomino') {
+            userName = 'Usuário Anônimo';
+          }
+          
+          return { ...review, userName };
+        })
+      );
+  
+      const updatedMovie = { ...data, reviews: updatedReviews };
+      console.log("updatedMovie",updatedMovie)
+  
+      setMoviesDetails(updatedMovie);
+      navigate(`/movies/${moviesId}`);
+    } catch (error) {
+      console.error("Error fetching movie details:", error);
+    }
+  };
   
   
  
 
   const createReview = async (formData: IReview) => {
     try {
-      const tokenWithQuotes = localStorage.getItem("@kenzieMovies:token");
-
-      if (tokenWithQuotes) {
-        const token = tokenWithQuotes.replace(/"/g, "");
+     
+      
+        const token = localStorage.getItem("@kenzieMovies:token")?.replace(/"/g, "");
         const { data } = await api.post("/reviews", formData, {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -113,7 +152,7 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
           transition: Slide,
           autoClose: 2000,
         });
-      }
+    
     } catch (error) {
       toast.error("Ocorreu um erro ao tentar realizar a operação solicitada.", {
         transition: Slide,
@@ -126,10 +165,10 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
     reviewId: number,
     formData: { review: any }
   ) => {
-    const tokenWithQuotes = localStorage.getItem("@kenzieMovies:token");
+    
 
-    if (tokenWithQuotes) {
-      const token = tokenWithQuotes.replace(/"/g, "");
+   
+      const token = localStorage.getItem("@kenzieMovies:token")?.replace(/"/g, "");
 
       try {
         await api.put(`/reviews/${reviewId}`, formData, {
@@ -163,14 +202,14 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
           }
         );
       }
-    }
+  
   };
 
   const handleDelete = async (reviewId: number) => {
-    const tokenWithQuotes = localStorage.getItem("@kenzieMovies:token");
+   
 
-    if (tokenWithQuotes) {
-      const token = tokenWithQuotes.replace(/"/g, "");
+  
+      const token = localStorage.getItem("@kenzieMovies:token")?.replace(/"/g, "");
 
       try {
         await api.delete(`/reviews/${reviewId}`, {
@@ -194,7 +233,7 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
           }
         );
       }
-    }
+  
   };
 
   return (

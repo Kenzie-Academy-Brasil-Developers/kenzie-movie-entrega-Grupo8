@@ -2,11 +2,8 @@ import { useContext } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Input } from "../../Fragments/Input";
 import { UserContext } from "../../providers/UserContext/UserContext";
-import { Header } from "../Header";
 import { TRegisterFormValues, formRegisterSchema } from "./formRegisterSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
-
-
 
 export const FormRegister = () => {
   const { userSignUp } = useContext(UserContext);
@@ -21,9 +18,7 @@ export const FormRegister = () => {
     
     return (
       <>
-      <Header />
-
-      <form onSubmit={handleSubmit(submit)} noValidate>
+        <form onSubmit={handleSubmit(submit)} noValidate>
         <h2>Cadastro</h2>
 
         <p>Preencha os campos para cadastrar-se</p>

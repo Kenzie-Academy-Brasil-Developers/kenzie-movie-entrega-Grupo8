@@ -7,14 +7,18 @@ export interface IMoviesProviderProps {
 export interface IMovie {
   score: React.ReactNode;
   duration?: string;
-  image: string | undefined;
+  image?: string | undefined;
   id: number;
   name: string;
   type: string;
   tempo: number;
   synopsis: string;
   reviews?: IReview[] | undefined;
-  moviesDetails?: IMovie | null;
+}
+
+export interface IMovieDetails {
+  movie: IMovie;
+  reviews?: IReview[] | undefined;
 }
 
 
@@ -26,6 +30,7 @@ export interface IReview {
   userId: number;
   score: number;
   description: string;
+  userName:string;
 };
 
 export interface IMoviesContext {
@@ -44,10 +49,8 @@ export interface IMoviesContext {
     }
   ) => Promise<void>;
   handleMoviesDetails: (moviesId: number) => Promise<void>;
-  moviesDetails?: IMovie | null;
+  moviesDetails?: IMovieDetails[] | undefined;
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  tokenWithQuotes: string | null
-  token: string | null
  
 };

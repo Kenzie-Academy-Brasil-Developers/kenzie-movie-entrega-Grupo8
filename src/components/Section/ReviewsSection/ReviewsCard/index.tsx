@@ -5,6 +5,7 @@ export const ReviewsCard = ({ review }: { review: IReview }) => {
     <ul>
       <li>{review.score}</li>
       <li>{review.description}</li>
+      <li>{review.userName}</li>
     </ul>
   );
 };

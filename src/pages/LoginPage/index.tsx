@@ -1,11 +1,10 @@
-import { FormLogin } from "../../Components/FormLogin";
-import { Header } from "../../Components/Header";
-import { Footer } from "../../Components/Footer";
+import { FormLogin } from "../../components/FormLogin";
+import { Header } from "../../components/Header";
+import { Footer } from "../../components/Footer";
 
 export const LoginPage = () => {
   return (
     <main>
-      <Header />
       <FormLogin />
       <Footer />
     </main>

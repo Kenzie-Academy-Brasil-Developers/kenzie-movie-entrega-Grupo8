@@ -1,10 +1,12 @@
-import { Link } from "react-router-dom"
+import { NavLink } from "react-router-dom";
+import { AnchorProps } from "./@types";
 
-export const Anchor = () => {
-
-    return(
-        <>
-            <Link to={"/"}><a>Cadastre-se</a></Link>
-        </>
-    )
-}
+export const Anchor = ({ to, text, ...rest }: AnchorProps) => {
+  return (
+    <div>
+      <NavLink to={to} {...rest}>
+        {text}
+      </NavLink>
+    </div>
+  );
+};

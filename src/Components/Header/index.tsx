@@ -1,18 +1,39 @@
-import { Anchor } from "../../Fragments/Anchor";
-import { Button } from "../../Fragments/Button";
+import { NavLink } from "react-router-dom";
+import { useEffect, useState } from "react";
 
-export const Header = () => {
-    return(
-        <header>
-            <div>
-                <h2>kenziemovie</h2>
+interface HeaderProps {
+  onLogout: () => void;
+}
 
-                <div>
-                    <Anchor />
+export const Header = ({ onLogout }: HeaderProps) => {
+  const [userName, setUserName] = useState<string | undefined>(undefined);
 
-                    <Button />
-                </div>
-            </div>
-        </header>
-    );
+  useEffect(() => {
+    const userJSON = localStorage.getItem("@kenzieMovies:user");
+    if (userJSON) {
+      const user = JSON.parse(userJSON);
+      setUserName(user.name);
+    }
+  }, []);
+
+  return (
+    <header>
+      <div>
+        <h2>kenziemovie</h2>
+        <div>
+          {userName ? (
+            <>
+              <span>Welcome, {userName}</span>
+              <button onClick={onLogout}>Logout</button>
+            </>
+          ) : (
+            <>
+              <NavLink to="/login">Login</NavLink>
+              <NavLink to="/register">Register</NavLink>
+            </>
+          )}
+        </div>
+      </div>
+    </header>
+  );
 };
