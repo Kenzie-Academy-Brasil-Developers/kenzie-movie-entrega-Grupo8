@@ -22,7 +22,7 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
 
  */
 
-
+  
   const [movies, setMovies] = useState<IMovie[]>([]);
   console.log("moviesTest", movies)
   const [reviews, setReviews] = useState<IReview[]>([]);
