@@ -13,7 +13,7 @@ export interface IMovie {
   type: string;
   tempo: number;
   synopsis: string;
-  reviews?: IReview[];
+  reviews?: IReview[] | undefined;
   moviesDetails?: IMovie | null;
 }
 

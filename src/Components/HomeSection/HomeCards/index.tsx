@@ -18,11 +18,16 @@ export const HomeCards: React.FC<MovieCardProps> = ({ movie }) => {
         <div>
           <h3>{movie.name}</h3>
           {/* Cálculo da média das notas */}
-          {movie.reviews.length > 0 && (
+          {movie.reviews && movie.reviews.length > 0 && (
             <div>
-                <img src={estrela} alt="avaliacao" />
+              <img src={estrela} alt="avaliacao" />
               <p>
-                {(movie.reviews.reduce((total, review) => total + review.score,0) / movie.reviews.length).toFixed(1)}
+                {(
+                  movie.reviews.reduce(
+                    (total, review) => total + review.score,
+                    0
+                  ) / movie.reviews.length
+                ).toFixed(1)}
               </p>
             </div>
           )}

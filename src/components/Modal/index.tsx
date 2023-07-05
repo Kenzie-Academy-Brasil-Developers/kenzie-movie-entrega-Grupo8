@@ -73,16 +73,13 @@ export const Modal = ({ children }) => {
       <button type="submit">Avaliar</button>
     </form>
   </Modal>
-) : null;
-  function setIsOpen(arg0: boolean): void {
-    throw new Error("Function not implemented.");
-  }
+) : null;}
 
-  function createReview(_event: FormEvent<HTMLFormElement>): void {
-    throw new Error("Function not implemented.");
-  }
+function setIsOpen(arg0: boolean): void {
+  throw new Error("Function not implemented.");
+}
 
-  function setIsOpen(arg0: boolean): void {
-    throw new Error("Function not implemented.");
-  }
-
+function createReview(event: FormEvent<HTMLFormElement>): void {
+  throw new Error("Function not implemented.");
+}
+ 
