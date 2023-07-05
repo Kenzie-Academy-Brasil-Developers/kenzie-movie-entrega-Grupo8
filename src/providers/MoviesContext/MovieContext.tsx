@@ -185,6 +185,8 @@ const handleMoviesDetails = async (moviesId: number) => {
         handleUpdateReviews,
         handleMoviesDetails,
         moviesDetails,
+        isOpen,
+        setIsOpen,
       }}
     >
       {children}

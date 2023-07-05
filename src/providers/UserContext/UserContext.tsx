@@ -45,6 +45,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
         autoClose: 2000,
       });
       navigate('/movies');
+      getMovies()
     } catch (error) {
       toast.error("Ocorreu um erro ao tentar realizar a operação solicitada.", {
         transition: Slide,
@@ -66,3 +67,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
     </UserContext.Provider>
   );
 };
+function getMovies() {
+  throw new Error('Function not implemented.');
+}
+

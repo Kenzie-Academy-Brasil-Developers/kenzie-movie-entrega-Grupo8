@@ -45,4 +45,7 @@ export interface IMoviesContext {
   ) => Promise<void>;
   handleMoviesDetails: (moviesId: number) => Promise<void>;
   moviesDetails?: IMovie | null;
+  isOpen: boolean;
+  setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+ 
 };
