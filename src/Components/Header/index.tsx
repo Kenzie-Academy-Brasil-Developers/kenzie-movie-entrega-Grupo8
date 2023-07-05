@@ -1,23 +1,16 @@
 import { NavLink } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useContext} from "react";
+import { UserContext } from "../../providers/UserContext/UserContext";
 
 interface HeaderProps {
-  onLogout: () => void;
+  userLogout: () => void
 }
 
-export const Header = ({ onLogout }: HeaderProps) => {
-  const [userName, setUserName] = useState<string | undefined>(undefined);
+export const Header = ({}: HeaderProps) => {
+  
+  const {userName, userLogout, firstLetter } = useContext(UserContext)
 
   
-  useEffect(() => {
-    const userJSON = localStorage.getItem("@kenzieMovies:user");
-    if (userJSON) {
-      
-      const user = JSON.parse(userJSON);
-      setUserName(user.name);
-    }/* 
-    const firstLetter = user.name.charAt(0); */
-  }, []);
   
   return (
     <header>
@@ -26,13 +19,9 @@ export const Header = ({ onLogout }: HeaderProps) => {
         <div>
           {userName ? (
             <>
-              <div>
-                <div>
-                  <span>p</span>
-                  <span>{userName}</span>
-                </div>
-                <button onClick={onLogout}>Logout</button>
-              </div>
+            <span>{firstLetter}</span>
+              <span>{userName}</span>
+              <button onClick={userLogout}>Sair</button>
             </>
           ) : (
             <>

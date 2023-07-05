@@ -2,7 +2,6 @@ import { useContext } from "react";
 import { MoviesContext } from "../../../../providers/MoviesContext/MovieContext";
 import { ReviewsSection } from "../../ReviewsSection";
 import estrela from "../../../../assets/estrela.svg";
-import { Header } from "../../../Header";
 
 export const MoviesDetailsList = () => {
   const { moviesDetails } = useContext(MoviesContext);
@@ -24,7 +23,7 @@ export const MoviesDetailsList = () => {
 
   return (
     <main>
-      <Header />
+      
       <section>
         <div key={movie.id}>
           <img src={movie.image} alt={movie.name} />
@@ -45,6 +44,12 @@ export const MoviesDetailsList = () => {
         </div>
       </section>
       <section>
+        <div>
+          <h1>AVALIAÇÕES</h1>
+          <button>
+            <img src={estrela} alt="" /> Avaliar
+          </button>
+        </div>
         <ReviewsSection />
       </section>
     </main>
