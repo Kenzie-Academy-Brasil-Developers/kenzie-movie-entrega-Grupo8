@@ -8,14 +8,17 @@ interface HeaderProps {
 export const Header = ({ onLogout }: HeaderProps) => {
   const [userName, setUserName] = useState<string | undefined>(undefined);
 
+  
   useEffect(() => {
     const userJSON = localStorage.getItem("@kenzieMovies:user");
     if (userJSON) {
+      
       const user = JSON.parse(userJSON);
       setUserName(user.name);
-    }
+    }/* 
+    const firstLetter = user.name.charAt(0); */
   }, []);
-
+  
   return (
     <header>
       <div>
@@ -23,8 +26,13 @@ export const Header = ({ onLogout }: HeaderProps) => {
         <div>
           {userName ? (
             <>
-              <span>Welcome, {userName}</span>
-              <button onClick={onLogout}>Logout</button>
+              <div>
+                <div>
+                  <span>p</span>
+                  <span>{userName}</span>
+                </div>
+                <button onClick={onLogout}>Logout</button>
+              </div>
             </>
           ) : (
             <>
