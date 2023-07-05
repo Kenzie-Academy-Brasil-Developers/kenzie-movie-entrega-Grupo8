@@ -5,7 +5,7 @@ export const Header = () => {
     return(
         <header>
             <div>
-                <h2>kenziemovie</h2>;
+                <h2>kenziemovie</h2>
 
                 <div>
                     <Anchor />

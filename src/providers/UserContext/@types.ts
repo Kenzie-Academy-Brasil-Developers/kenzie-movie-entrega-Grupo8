@@ -1,3 +1,5 @@
+import { TRegisterFormValues } from "../../Components/FormRegister/formRegisterSchema";
+
 export interface IUserProviderProps {
     children: React.ReactNode;
   }
@@ -15,8 +17,8 @@ export interface IUserProviderProps {
   
   export interface IUserContext{
     user: IUser | null;
-    userSignUp: (formData: any) => Promise<void>;
-    userLogIn: (formData: any) => Promise<void>;
+    userSignUp: (formData: TRegisterFormValues) => Promise<void>;
+    userLogIn: (formData: TRegisterFormValues) => Promise<void>;
     userLogout: () => void;
   }
   

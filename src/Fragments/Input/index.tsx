@@ -1,4 +1,4 @@
-import { ForwardedRef, forwardRef, InputHTMLAttributes } from "react";
+import { forwardRef, InputHTMLAttributes } from "react";
 import { FieldError } from "react-hook-form";
 
 interface IInputProps extends InputHTMLAttributes<HTMLInputElement> {

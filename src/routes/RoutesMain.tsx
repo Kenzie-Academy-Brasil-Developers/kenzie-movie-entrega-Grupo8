@@ -5,6 +5,7 @@ import { MoviesPage } from "../pages/MoviesPage";
 import { LoginPage } from "../pages/LoginPage";
 import { PublicRoutes } from "./PublicRoutes";
 import { MovieDetailsPage } from "../pages/MovieDetailsPage";
+import { ProtectedRoutes } from "./ProtectedRoutes";
 
 export const RoutesMain = () => {
   return (
@@ -14,8 +15,10 @@ export const RoutesMain = () => {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
       </Route>
+      <Route element={<ProtectedRoutes />}>
       <Route path="/movies" element={<MoviesPage />} />
       <Route path="/movies/:id" element={<MovieDetailsPage />} />
+      </Route>
     </Routes>
   );
 };

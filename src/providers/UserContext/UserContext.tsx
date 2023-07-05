@@ -3,6 +3,7 @@ import { createContext, useState } from 'react';
 import { api } from '../../service/api';
 import { Slide, toast } from 'react-toastify';
 import { useNavigate } from 'react-router-dom';
+import { TRegisterFormValues } from '../../Components/FormRegister/formRegisterSchema';
 
 
 export const UserContext = createContext({} as IUserContext);
@@ -15,7 +16,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
   
   // Comentários: Criação de usuários;
 
-  const userSignUp = async (formData: any) => {
+  const userSignUp = async (formData: TRegisterFormValues) => {
     try{
       const response = await api.post('/users', formData);
       setUser(response.data);
@@ -33,7 +34,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
     }
   }
 
-  const userLogIn = async (formData: any) => {
+  const userLogIn = async (formData: TRegisterFormValues) => {
     try {
       const response = await api.post<IUserLogInResponse>("/login", formData);
       console.log(response.data);

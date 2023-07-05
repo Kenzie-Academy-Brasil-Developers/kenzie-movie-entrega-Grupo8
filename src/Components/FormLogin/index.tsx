@@ -1,26 +1,29 @@
-import { useForm } from 'react-hook-form';
+import { SubmitHandler, useForm } from 'react-hook-form';
 import { UserContext } from '../../providers/UserContext/UserContext';
 import { useContext } from 'react';
 import { Input } from '../../Fragments/Input';
-import { TLoginFormValues } from './formLoginSchema';
+import { TLoginFormValues, formLoginSchema } from './formLoginSchema';
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export const FormLogin = () => {
   const { userLogIn } = useContext(UserContext);
-  const { register, handleSubmit, formState: { errors } } = useForm<TLoginFormValues>();
-  const submit = async (LoginData: any) => {
+  const { register, handleSubmit, formState: { errors } } = useForm<TLoginFormValues>({
+    resolver: zodResolver(formLoginSchema)
+  });
+  const submit: SubmitHandler<TLoginFormValues> = async (LoginData: any) => {
     userLogIn(LoginData);
   };
   return (
     <form onSubmit={handleSubmit(submit)} noValidate>
       <Input
-        label="Email"
+       
         type="email"
         placeholder="Digite aqui seu e-mail"
         {...register("email")}
         error={errors.email}
       />
       <Input
-        label="Senha"
+        
         type="password"
         placeholder="Digite aqui sua senha"
         {...register("password")}

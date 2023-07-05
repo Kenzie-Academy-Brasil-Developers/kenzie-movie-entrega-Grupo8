@@ -4,7 +4,7 @@ export const Anchor = () => {
 
     return(
         <>
-            <Link to={"/register"}><a>Cadastre-se</a></Link>
+            <Link to={"/"}><a>Cadastre-se</a></Link>
         </>
     )
 }

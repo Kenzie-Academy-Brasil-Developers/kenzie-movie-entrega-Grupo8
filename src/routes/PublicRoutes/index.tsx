@@ -6,5 +6,5 @@ import { UserContext } from "../../providers/UserContext/UserContext";
 export const PublicRoutes = () => {
   const { user } = useContext(UserContext);
 
-  return user ? <Navigate to="/dashboard" /> : <Outlet />;
+  return user ? <Navigate to="/movies" /> : <Outlet />;
 };
