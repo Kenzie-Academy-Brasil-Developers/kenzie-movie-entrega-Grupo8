@@ -26,16 +26,17 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
   const [movies, setMovies] = useState<IMovie[]>([]);
   console.log("moviesTest", movies)
   const [reviews, setReviews] = useState<IReview[]>([]);
+  console.log("reviews", reviews)
   const [moviesDetails, setMoviesDetails] = useState<IMovie[]>([]);
+  console.log("moviesDetails", moviesDetails)
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
-  console.log('moviesDetails',moviesDetails);
+  console.log('currentCardIndex',currentCardIndex);
 
   /* Listar todos os Filmes */
 
   const getMovies = async () => {
     try {
       const response = await api.get("/movies");
-      console.log(response.data);
       const movies = response.data;
 
       for (const movie of movies) {
@@ -53,22 +54,47 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
     getMovies();
   }, []);
 
-/*  Navegar para a nova pagina com os detalhes do filmes */
-
-const handleMoviesDetails = async (moviesId: number) => {
-    console.log(moviesId)
-    
-      try {
-        const {data} = await api.get(`/movies/${moviesId}?_embed=reviews`);
-        console.log("handleMoviesDetails", data)
-
-        setMoviesDetails(data);
-        navigate(`/movies/${moviesId}`);
-      } catch (error) {
-        console.error("Error fetching movie details:", error);
-      }
-    
-  }; 
+  const handleMoviesDetails = async (moviesId: number) => {
+    console.log(moviesId);
+  
+    try {
+      const token = localStorage.getItem("@kenzieMovies:token")?.replace(/"/g, "");
+      console.log('token',token)
+      const { data } = await api.get(`/movies/${moviesId}?_embed=reviews`);
+      console.log("handleMoviesDetails", data);
+  
+      const updatedReviews = await Promise.all(
+        data.reviews.map(async (review: IReview) => {
+          console.log('review', review);
+          const userResponse = await api.get(`/users/${review.userId}`, {
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+          });
+          console.log('review.userId', review.userId);
+  
+          let userName = userResponse.data.name;
+          console.log("userName", userName);
+  
+          if (userName === 'anomino') {
+            userName = 'Usuário Anônimo';
+          }
+  
+          return { ...review, userName };
+        })
+      );
+  
+      const updatedMovie = { ...data, reviews: updatedReviews };
+  
+      setMoviesDetails(updatedMovie);
+      navigate(`/movies/${moviesId}`);
+    } catch (error) {
+      console.error("Error fetching movie details:", error);
+    }
+  };
+  
+  
+  
  
 
   const createReview = async (formData: IReview) => {

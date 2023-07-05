@@ -47,5 +47,7 @@ export interface IMoviesContext {
   moviesDetails?: IMovie | null;
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
+  tokenWithQuotes: string | null
+  token: string | null
  
 };
