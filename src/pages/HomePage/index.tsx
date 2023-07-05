@@ -1,5 +1,7 @@
+import { HomeSection } from "../../components/HomeSection/index"
+
 export const HomePage = () => {
     return(
-        <h1>HomePage</h1>
+        <HomeSection/> 
     )
 }
