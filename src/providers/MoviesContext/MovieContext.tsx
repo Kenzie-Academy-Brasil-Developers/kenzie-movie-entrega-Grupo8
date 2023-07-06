@@ -92,12 +92,14 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
   
   
  
-
+ 
   const createReview = async (formData: IReview) => {
     try {
      
       
         const token = localStorage.getItem("@kenzieMovies:token")?.replace(/"/g, "");
+        
+        
         const { data } = await api.post("/reviews", formData, {
           headers: {
             Authorization: `Bearer ${token}`,

@@ -47,11 +47,7 @@ export const MoviesDetailsList = () => {
       <section>
         <div>
           <h1>AVALIAÇÕES</h1>
-<<<<<<< HEAD
           <button onClick={() => setIsOpen(true)}>
-=======
-          <button >
->>>>>>> 8981e417762d7bb3d316a1c23fcca228fda40f50
             <img src={estrela} alt="" /> Avaliar
           </button>
           {isOpen ? (
