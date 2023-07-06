@@ -1,38 +1,22 @@
 import { useContext } from "react";
 import { MoviesContext } from "../../providers/MoviesContext/MovieContext";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { TCreateReviews, formCreateReviewSchema } from "./formCreateReview";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { IReview } from "../../providers/MoviesContext/@types";
 
-
-interface IReview {
-    name: string;
-    id: string;
-    movieId: string;
-    userId: string;
-    userName: string;
-    score: string;
-    description: string;
-  }
-  
-
 export const FormCreateReview = () => {
   const { createReview } = useContext(MoviesContext);
- 
 
   const {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm<TCreateReviews>({
-    resolver: zodResolver(formCreateReviewSchema),
-  });
+  } = useForm<IReview>();
 
   const submit: SubmitHandler<IReview> = async (formData) => {
     createReview(formData);
   };
-  
+
+
 
   return (
     <>

@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { Key, ReactNode } from "react";
 
 export interface IMoviesProviderProps {
   children: React.ReactNode;
@@ -17,23 +17,31 @@ export interface IMovie {
 }
 
 export interface IMovieDetails {
+  name: string;
+  synopsis: React.ReactNode;
+  duration: React.ReactNode;
+  type: string;
+  image: string | undefined;
+  id: number;
   movie: IMovie;
-  
   reviews: IReview[];
 }
 
-
-
 export interface IReview {
-  name: ReactNode;
+  name: React.ReactNode;
   id: number;
   movieId: number;
   userId: number;
+  formData?: number | object;
   score: number;
   description: string;
-  userName:string;
-  formData: IReview;
-};
+  userName: string;
+  synopsis: string;
+  reviews: string | number | object;
+  image?: string | undefined;
+  upDateReviews: IReview[]
+}
+
 
 export interface IMoviesContext {
   movies: IMovie[];
@@ -54,5 +62,6 @@ export interface IMoviesContext {
   moviesDetails?: IMovieDetails[] | undefined;
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
- 
-};
+  upDateReviews: IReview[]; 
+}
+

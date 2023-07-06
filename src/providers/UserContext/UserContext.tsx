@@ -13,17 +13,18 @@ import { TRegisterFormValues } from "../../components/FormRegister/formRegisterS
 export const UserContext = createContext({} as IUserContext);
 
 export const UserProvider = ({ children }: IUserProviderProps) => {
-  const [user, setUser] = useState<IUser | null>(null);
- 
 
-  const [userName, setUserName] = useState<string | undefined>(undefined);
+  const [user, setUser] = useState<IUser | null>(JSON.parse(localStorage.getItem("@kenzieMovies:user") as string));
+
+
+  
   const navigate = useNavigate();
 
   const userSignUp = async (formData: TRegisterFormValues) => {
     try {
       const response = await api.post("/users", formData);
       setUser(response.data.user);
-      setUserName(response.data.user.name);
+    
       toast.success("Cadastro efetuado com Sucesso!", {
         transition: Slide,
         autoClose: 2000,
@@ -41,7 +42,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
     try {
       const response = await api.post<IUserLogInResponse>("/login", formData);
       setUser(response.data.user);
-      setUserName(response.data.user.name);
+    
       localStorage.setItem("@kenzieMovies:token", response.data.accessToken);
       localStorage.setItem(
         "@kenzieMovies:user",
@@ -61,18 +62,17 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
     }
   };
 
-  const firstLetter = userName?.charAt(0);
+  const firstLetter = user?.name.charAt(0);
 
   useEffect(() => {
     const userJSON = localStorage.getItem("@kenzieMovies:user");
     if (userJSON) {
       const user = JSON.parse(userJSON);
     }
-  }, []);
+  }, [user]);
 
   const userLogout = () => {
     setUser(null);
-    setUserName(undefined);
     localStorage.removeItem("@kenzieMovies:token");
     localStorage.removeItem("@kenzieMovies:user");
     navigate("/");
@@ -81,12 +81,10 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
   return (
     <UserContext.Provider
       value={{
-      
         user,
         userSignUp,
         userLogIn,
         userLogout,
-        userName,
         firstLetter,
       }}
     >

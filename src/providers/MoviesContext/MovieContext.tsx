@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import { createContext, useState, useEffect, useContext } from "react";
 import { api } from "../../service/api";
 import { Slide, toast } from "react-toastify";
 import {
@@ -9,29 +9,28 @@ import {
   IMovieDetails,
 } from "./@types";
 import { useNavigate } from "react-router-dom";
+import { UserContext } from "../UserContext/UserContext";
 
 export const MoviesContext = createContext({} as IMoviesContext);
 
 export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
+  const { user } = useContext(UserContext);
+
   const navigate = useNavigate();
 
+
   const [isOpen, setIsOpen] = useState(false)
-  /* 
-  const [addReview, setAddReview] = useState(null)
-  const [upDateReview, setUpDateReview] = useState(null)
-  const [deleteReview, setDeleteReview] = useState(null)
-
- */
-
 
   const [movies, setMovies] = useState<IMovie[]>([]);
  
   const [reviews, setReviews] = useState<IReview[]>([]);
  
   const [moviesDetails, setMoviesDetails] = useState<IMovieDetails[]>([]);
- 
+
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
- 
+  const [upDateReviews, setUpDateReviews] = useState<IReview[]>([]);
+  console.log
+
 
   /* Listar todos os Filmes */
 
@@ -56,13 +55,11 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
   }, []);
 
 
-  const handleMoviesDetails = async (moviesId: number) => {
-
-  
+  const handleMoviesDetails = async (moviesId: number) => {  
     try {
       const token = localStorage.getItem("@kenzieMovies:token")?.replace(/"/g, "");
       const { data } = await api.get(`/movies/${moviesId}?_embed=reviews`);
-   
+
   
       const updatedReviews = await Promise.all(
         data.reviews.map(async (review: IReview) => {
@@ -72,8 +69,7 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
               Authorization: `Bearer ${token}`,
             },
           });
-     
-  
+      
           let userName = userResponse.data.name;
      
 
@@ -86,36 +82,43 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
       );
   
       const updatedMovie = { ...data, reviews: updatedReviews };
- 
+
   
-      setMoviesDetails(updatedMovie);
+      setMoviesDetails([updatedMovie]);
+
       navigate(`/movies/${moviesId}`);
     } catch (error) {
       console.error("Error fetching movie details:", error);
     }
   };
   
-  
- 
- 
+
+
   const createReview = async (formData: IReview) => {
     try {
-     
+      const token = localStorage.getItem("@kenzieMovies:token")?.replace(/"/g, "");  
+      const body = {
+        userId: user?.id,
+        movieId: moviesDetails[0].id,
+        score: formData.score,
+        description: formData.description,
+      };
+  
+      const { data } = await api.post("/reviews", body, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
+  
+      setIsOpen(false)
       
-        const token = localStorage.getItem("@kenzieMovies:token")?.replace(/"/g, "");
-        
-        
-        const { data } = await api.post("/reviews", formData, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
-        setReviews((reviews) => [...reviews, data]);
-        toast.success("Avaliação realizada com Sucesso!", {
-          transition: Slide,
-          autoClose: 2000,
-        });
-    
+      setUpDateReviews(data);
+  
+      toast.success("Avaliação realizada com sucesso!", {
+        transition: Slide,
+        autoClose: 2000,
+      });
+
     } catch (error) {
       toast.error("Ocorreu um erro ao tentar realizar a operação solicitada.", {
         transition: Slide,
@@ -123,13 +126,13 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
       });
     }
   };
+  
+  
 
   const handleUpdateReviews = async (
     reviewId: number,
     formData: { review: any }
-  ) => {
-    
-
+  ) => {  
    
       const token = localStorage.getItem("@kenzieMovies:token")?.replace(/"/g, "");
 
@@ -215,6 +218,7 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
         moviesDetails,
         isOpen,
         setIsOpen,
+        upDateReviews,
       }}
     >
       {children}

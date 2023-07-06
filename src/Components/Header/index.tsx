@@ -4,10 +4,15 @@ import { UserContext } from "../../providers/UserContext/UserContext";
 
 interface HeaderProps {
   userLogout: () => void;
+  to1: string;
+  text1: string;
+  to2: string;
+  text2: string;
+
 }
 
 export const Header = ({}: HeaderProps) => {
-  const { userLogout, userName, firstLetter } = useContext(UserContext)
+  const { userLogout,firstLetter, user } = useContext(UserContext)
   
   
   return (
@@ -15,12 +20,12 @@ export const Header = ({}: HeaderProps) => {
       <div>
         <h2>kenziemovie</h2>
         <div>
-          {userName ? (
+          {user?.name ? (
             <>
               <div>
                 <div>
                   <span>{firstLetter}</span>
-                  <span>{userName}</span>
+                  <span>{user?.name}</span>
                 </div>
                 <button onClick={userLogout}>Sair</button>
               </div>

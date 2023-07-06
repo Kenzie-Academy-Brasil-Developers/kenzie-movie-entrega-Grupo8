@@ -4,14 +4,19 @@ import { ReviewsCard } from "../ReviewsCard";
 
 export const ReviewsList = () => {
   const { moviesDetails } = useContext(MoviesContext);
+ 
 
   if (moviesDetails === null) {
     return null;
   }
 
+  const movieReview = moviesDetails![0].reviews
+
+  
+
   return (
     <div>
-      {moviesDetails.reviews?.map((review) => (
+      {movieReview.map((review) => (
         <ReviewsCard key={review.id} review={review} />
       ))}
     </div>

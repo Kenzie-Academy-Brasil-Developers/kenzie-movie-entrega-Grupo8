@@ -1,13 +1,13 @@
-import { FormEvent, useContext, useEffect, useRef } from "react";
+import { ReactNode, useContext, useEffect, useRef } from "react";
 import { MoviesContext } from "../../providers/MoviesContext/MovieContext";
 
-export const Modal = ({ children }) => {
-  const { isOpen, setIsOpen, createReview } = useContext(MoviesContext);
+export const Modal = ({ children }: { children: ReactNode }) => {
+  const { setIsOpen } = useContext(MoviesContext);
 
-  const modalRef = useRef(null);
+  const modalRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const handleOutClick = (event) => {
+    const handleOutClick = (event: MouseEvent) => {
       if (!modalRef.current?.contains(event.target)) {
         setIsOpen(false);
       }
@@ -47,38 +47,3 @@ export const Modal = ({ children }) => {
     </div>
   );
 };
-
-
-{/* <button onClick={() => setIsOpen(true)}>Abrir modal</button>; */}
-
-// {isOpen ? (
-//   <Modal>
-//     <form onSubmit={createReview}>
-//       <h2>Avaliação</h2>
-//       <select value="">
-//         <option value="">Selecione uma nota</option>
-//         <option value="1">1</option>
-//         <option value="2">2</option>
-//         <option value="3">3</option>
-//         <option value="4">4</option>
-//         <option value="5">5</option>
-//         <option value="6">6</option>
-//         <option value="7">7</option>
-//         <option value="8">8</option>
-//         <option value="9">9</option>
-//         <option value="10">10</option>
-//       </select>
-//       <textarea placeholder="Deixe um comentário"></textarea>
-//       <button type="submit">Avaliar</button>
-//     </form>
-//   </Modal>
-// ) : null;}
-
-function setIsOpen(arg0: boolean): void {
-  throw new Error("Function not implemented.");
-}
-
-function createReview(event: FormEvent<HTMLFormElement>): void {
-  throw new Error("Function not implemented.");
-}
- 
