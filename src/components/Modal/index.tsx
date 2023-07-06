@@ -49,31 +49,30 @@ export const Modal = ({ children }) => {
 };
 
 
-<button onClick={() => setIsOpen(true)}>Abrir modal</button>;
+{/* <button onClick={() => setIsOpen(true)}>Abrir modal</button>; */}
 
-{isOpen ? (
-  <Modal>
-    <form onSubmit={createReview}>
-      <h2>Avaliação</h2>
-      <select value="">
-        <option value="">Selecione uma nota</option>
-        <option value="0">0</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-      </select>
-      <textarea placeholder="Deixe um comentário"></textarea>
-      <button type="submit">Avaliar</button>
-    </form>
-  </Modal>
-) : null;}
+// {isOpen ? (
+//   <Modal>
+//     <form onSubmit={createReview}>
+//       <h2>Avaliação</h2>
+//       <select value="">
+//         <option value="">Selecione uma nota</option>
+//         <option value="1">1</option>
+//         <option value="2">2</option>
+//         <option value="3">3</option>
+//         <option value="4">4</option>
+//         <option value="5">5</option>
+//         <option value="6">6</option>
+//         <option value="7">7</option>
+//         <option value="8">8</option>
+//         <option value="9">9</option>
+//         <option value="10">10</option>
+//       </select>
+//       <textarea placeholder="Deixe um comentário"></textarea>
+//       <button type="submit">Avaliar</button>
+//     </form>
+//   </Modal>
+// ) : null;}
 
 function setIsOpen(arg0: boolean): void {
   throw new Error("Function not implemented.");

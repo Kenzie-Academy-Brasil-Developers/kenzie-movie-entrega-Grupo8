@@ -2,10 +2,12 @@ import { useContext } from "react";
 import { MoviesContext } from "../../../../providers/MoviesContext/MovieContext";
 import { ReviewsSection } from "../../ReviewsSection";
 import estrela from "../../../../assets/estrela.svg";
-import { Header } from "../../../Header";
+import { Modal } from "../../../Modal";
+import { FormCreateReview } from "../../../FormCreateReview";
 
 export const MoviesDetailsList = () => {
   const { moviesDetails } = useContext(MoviesContext);
+  const { isOpen, setIsOpen, createReview } = useContext(MoviesContext);
 
   if (!moviesDetails) {
     return <div>Carregando detalhes do filme...</div>;
@@ -16,15 +18,13 @@ export const MoviesDetailsList = () => {
     movie.reviews &&
     movie.reviews.length > 0 &&
     (
-      movie.reviews.reduce((total, review) => total + review.score, 0) /
+      movie.reviews.reduce((total, review: { score}) => total + review.score, 0) /
       movie.reviews.length
     ).toFixed(1.0);
 
-  console.log(averageRating);
-
   return (
     <main>
-      <Header />
+      
       <section>
         <div key={movie.id}>
           <img src={movie.image} alt={movie.name} />
@@ -45,6 +45,22 @@ export const MoviesDetailsList = () => {
         </div>
       </section>
       <section>
+        <div>
+          <h1>AVALIAÇÕES</h1>
+<<<<<<< HEAD
+          <button onClick={() => setIsOpen(true)}>
+=======
+          <button >
+>>>>>>> 8981e417762d7bb3d316a1c23fcca228fda40f50
+            <img src={estrela} alt="" /> Avaliar
+          </button>
+          {isOpen ? (
+            <Modal>
+              <h1>Avaliação</h1>
+              <FormCreateReview />
+            </Modal>) : null}
+
+        </div>
         <ReviewsSection />
       </section>
     </main>
