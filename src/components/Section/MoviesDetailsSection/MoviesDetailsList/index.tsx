@@ -20,7 +20,7 @@ export const MoviesDetailsList = () => {
       movie.reviews.length
     ).toFixed(1.0);
 
-  console.log(averageRating);
+
 
   return (
     <main>

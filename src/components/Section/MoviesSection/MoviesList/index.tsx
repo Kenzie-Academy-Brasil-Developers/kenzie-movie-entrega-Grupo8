@@ -6,7 +6,7 @@ import { MovieCard } from "../MovieCard";
 
 export const MoviesList = () => {
   const { movies, handleMoviesDetails } = useContext(MoviesContext);
-  console.log("MoviesPages", movies);
+
 
   return (
     <div>

@@ -12,8 +12,7 @@ export const FormRegister = () => {
   });
 
   const submit: SubmitHandler<TRegisterFormValues> = async (formData: any) => {
-    console.log(formData)
-    userSignUp(formData);
+   userSignUp(formData);
     }
     
     return (
