@@ -1,9 +1,11 @@
-import { MoviesDetailsList } from "./MoviesDetailsList";
+import { MoviesDetailsList } from "./MoviesDetailsList"
 
-export const MoviesDetailsSection = () => {
-  return (
-    <section>
-      <MoviesDetailsList />
-    </section>
-  );
-};
+
+
+export const MoviesDetailsSection = () =>{
+    return(
+        <section>
+            <MoviesDetailsList/>
+        </section>
+    )
+}

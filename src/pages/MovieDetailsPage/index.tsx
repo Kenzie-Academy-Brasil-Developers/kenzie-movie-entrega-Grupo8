@@ -4,6 +4,6 @@ import { MoviesDetailsSection } from "../../components/Section/MoviesDetailsSect
 
 export const MovieDetailsPage = () => {
     return(
-        <><MoviesDetailsSection /></>
+        <><Header to1={""} text1={"logado"} to2={""} text2={""} /><MoviesDetailsSection /></>
     )
 }

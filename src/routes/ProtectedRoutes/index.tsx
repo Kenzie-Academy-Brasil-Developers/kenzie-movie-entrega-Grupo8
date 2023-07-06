@@ -4,5 +4,6 @@ import { UserContext } from "../../providers/UserContext/UserContext";
 
 export const ProtectedRoutes = () => {
   const { user } = useContext(UserContext);
+
   return user ? <Outlet /> : <Navigate to="/" />;
 };

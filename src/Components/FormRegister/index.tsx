@@ -2,8 +2,8 @@ import { useContext } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Input } from "../../Fragments/Input";
 import { UserContext } from "../../providers/UserContext/UserContext";
-import { zodResolver } from "@hookform/resolvers/zod";
 import { TRegisterFormValues, formRegisterSchema } from "./formRegisterSchema";
+import { zodResolver } from "@hookform/resolvers/zod";
 
 export const FormRegister = () => {
   const { userSignUp } = useContext(UserContext);
@@ -11,8 +11,9 @@ export const FormRegister = () => {
     resolver: zodResolver(formRegisterSchema)
   });
 
-  const submit: SubmitHandler<TRegisterFormValues> = async (formData:TRegisterFormValues) => {
- userSignUp(formData);
+  const submit: SubmitHandler<TRegisterFormValues> = async (formData: any) => {
+    console.log(formData)
+    userSignUp(formData);
     }
     
     return (

@@ -2,12 +2,10 @@ import { useContext } from "react";
 import { MoviesContext } from "../../../../providers/MoviesContext/MovieContext";
 import { ReviewsSection } from "../../ReviewsSection";
 import estrela from "../../../../assets/estrela.svg";
-import { Modal } from "../../../Modal";
-import { FormCreateReview } from "../../../FormCreateReview";
+import { Header } from "../../../Header";
 
 export const MoviesDetailsList = () => {
   const { moviesDetails } = useContext(MoviesContext);
-  const { isOpen, setIsOpen, createReview } = useContext(MoviesContext);
 
   if (!moviesDetails) {
     return <div>Carregando detalhes do filme...</div>;
@@ -18,13 +16,15 @@ export const MoviesDetailsList = () => {
     movie.reviews &&
     movie.reviews.length > 0 &&
     (
-      movie.reviews.reduce((total, review: { score}) => total + review.score, 0) /
+      movie.reviews.reduce((total, review) => total + review.score, 0) /
       movie.reviews.length
     ).toFixed(1.0);
 
+  console.log(averageRating);
+
   return (
     <main>
-      
+      <Header />
       <section>
         <div key={movie.id}>
           <img src={movie.image} alt={movie.name} />
