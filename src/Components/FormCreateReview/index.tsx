@@ -4,8 +4,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { TCreateReviews, formCreateReviewSchema } from "./formCreateReview";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { IReview } from "../../providers/MoviesContext/@types";
-// import { SubmitHandler, useForm } from 'react-hook-form';
-// import { Select } from "../../Fragments/Select";
+
 
 export const FormCreateReview = () => {
     const { createReview } = useContext(MoviesContext);
@@ -16,7 +15,7 @@ export const FormCreateReview = () => {
 
     const submit: SubmitHandler<TCreateReviews> = async (formData: IReview) => {
         createReview(formData)
-        console.log(formData)
+        
     }
     
 
