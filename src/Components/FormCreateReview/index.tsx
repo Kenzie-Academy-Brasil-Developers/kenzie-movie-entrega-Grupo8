@@ -1,26 +1,29 @@
 import { useContext } from "react";
 import { MoviesContext } from "../../providers/MoviesContext/MovieContext";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { TCreateReviews } from "./formCreateReview";
-// import { SubmitHandler, useForm } from 'react-hook-form';
-// import { Select } from "../../Fragments/Select";
+import { TCreateReviews, formCreateReviewSchema } from "./formCreateReview";
+import { SubmitHandler, useForm } from "react-hook-form";
+import { IReview } from "../../providers/MoviesContext/@types";
+
 
 export const FormCreateReview = () => {
-    const { isOpen, setIsOpen, createReview } = useContext(MoviesContext);
-
-    const { register, handleSubmit, formState: {errors} } = useForm<TCreateReview>({
+    const { createReview } = useContext(MoviesContext);
+  
+    const { register, handleSubmit, formState: {errors} } = useForm<TCreateReviews>({
         resolver: zodResolver(formCreateReviewSchema)
     });
 
-    // const submit: SubmitHandler<TCreateReviews> async (formData: TCreateReview) => {
-    //     createReview()
-    // }
+    const submit: SubmitHandler<TCreateReviews> = async (formData: IReview) => {
+        createReview(formData)
+        
+    }
+    
 
     return (
         <>
             <h2>Avaliação</h2>
             <form onSubmit={handleSubmit(submit)}>
-                <select {...register('score')} error={errors.score}>
+                <select {...register('score')} onError={errors.score}>
                     <option value="">Selecione uma nota</option>
                     <option value="0">0</option>
                     <option value="1">1</option>

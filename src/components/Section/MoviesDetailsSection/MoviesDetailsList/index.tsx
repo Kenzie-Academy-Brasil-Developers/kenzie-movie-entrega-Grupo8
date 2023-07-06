@@ -2,9 +2,12 @@ import { useContext } from "react";
 import { MoviesContext } from "../../../../providers/MoviesContext/MovieContext";
 import { ReviewsSection } from "../../ReviewsSection";
 import estrela from "../../../../assets/estrela.svg";
+import { Modal } from "../../../Modal";
+import { FormCreateReview } from "../../../FormCreateReview";
 
 export const MoviesDetailsList = () => {
   const { moviesDetails } = useContext(MoviesContext);
+  const { isOpen, setIsOpen, createReview } = useContext(MoviesContext);
 
   if (!moviesDetails) {
     return <div>Carregando detalhes do filme...</div>;
@@ -44,9 +47,19 @@ export const MoviesDetailsList = () => {
       <section>
         <div>
           <h1>AVALIAÇÕES</h1>
+<<<<<<< HEAD
+          <button onClick={() => setIsOpen(true)}>
+=======
           <button >
+>>>>>>> 8981e417762d7bb3d316a1c23fcca228fda40f50
             <img src={estrela} alt="" /> Avaliar
           </button>
+          {isOpen ? (
+            <Modal>
+              <h1>Avaliação</h1>
+              <FormCreateReview />
+            </Modal>) : null}
+
         </div>
         <ReviewsSection />
       </section>
