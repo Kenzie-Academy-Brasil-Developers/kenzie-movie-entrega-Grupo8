@@ -22,14 +22,15 @@ export const MoviesDetailsList = () => {
   const movie = moviesDetails[0];
 
   const averageRating =
-    movie.reviews &&
-    movie.reviews.length > 0 &&
-    (
-      movie.reviews.reduce(
-        (total: any, review: { score: any }) => total + review.score,
-        0
-      ) / movie.reviews.length
-    ).toFixed(1);
+  movie && movie.reviews && movie.reviews.length > 0
+    ? (
+        movie.reviews.reduce(
+          (total: any, review: { score: any }) => total + review.score,
+          0
+        ) / movie.reviews.length
+      ).toFixed(1)
+    : 0;
+
 
   return (
     <main>

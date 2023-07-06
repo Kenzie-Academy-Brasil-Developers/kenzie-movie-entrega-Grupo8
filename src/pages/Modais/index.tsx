@@ -1,45 +1,32 @@
-import { ReactNode, useContext, useEffect, useRef } from "react";
+import { ReactNode, useContext, useRef } from "react";
 import { MoviesContext } from "../../providers/MoviesContext/MovieContext";
+import { useKeyDown } from "../../components/Hooks/useKeyDown";
+import { useOutClick } from "../../components/Hooks/useOutClick";
+
+
 
 export const Modal = ({ children }: { children: ReactNode }) => {
   const { setIsOpen } = useContext(MoviesContext);
+  
 
-  const modalRef = useRef<HTMLDivElement>(null);
+  const modalRef = useOutClick(() => {
+    handleClose();
+  });
 
-  useEffect(() => {
-    const handleOutClick = (event: MouseEvent) => {
-      if (!modalRef.current?.contains(event.target)) {
-        setIsOpen(false);
-      }
-    };
+  const buttonRef = useRef<HTMLButtonElement | null>(null);
 
-    window.addEventListener("mousedown", handleOutClick);
+  const handleClose = () => {
+    setIsOpen(false);
+  };
 
-    return () => {
-      window.removeEventListener("mousedown", handleOutClick);
-    };
-  }, []);
-
-  const buttonRef = useRef(null);
-
-  useEffect(() => {
-    const handleKeydown = (event: { key: string; }) => {
-      if (event.key === "Escape") {
-        buttonRef.current?.click();
-      }
-    };
-
-    window.addEventListener("keydown", handleKeydown);
-
-    return () => {
-      window.removeEventListener("keydown", handleKeydown);
-    };
-  }, []);
+  useKeyDown("Escape", () => {
+    handleClose();
+  });
 
   return (
     <div role="dialog">
       <div ref={modalRef}>
-        <button ref={buttonRef} onClick={() => setIsOpen(false)}>
+        <button ref={buttonRef} onClick={handleClose}>
           Fechar
         </button>
         {children}

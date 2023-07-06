@@ -1,4 +1,3 @@
-import { Key, ReactNode } from "react";
 
 export interface IMoviesProviderProps {
   children: React.ReactNode;

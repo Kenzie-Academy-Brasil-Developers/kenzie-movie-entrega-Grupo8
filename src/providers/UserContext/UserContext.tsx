@@ -67,7 +67,6 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
   useEffect(() => {
     const userJSON = localStorage.getItem("@kenzieMovies:user");
     if (userJSON) {
-      const user = JSON.parse(userJSON);
     }
   }, [user]);
 

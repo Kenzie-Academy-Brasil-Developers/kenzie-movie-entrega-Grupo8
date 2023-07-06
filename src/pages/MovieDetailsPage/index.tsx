@@ -1,4 +1,3 @@
-import { Header } from "../../components/Header"
 import { MoviesDetailsSection } from "../../components/Section/MoviesDetailsSection"
 
 
