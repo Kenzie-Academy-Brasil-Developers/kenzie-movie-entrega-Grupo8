@@ -15,11 +15,9 @@ export const MoviesDetailsList = () => {
     movie.reviews &&
     movie.reviews.length > 0 &&
     (
-      movie.reviews.reduce((total, review) => total + review.score, 0) /
+      movie.reviews.reduce((total, review: { score}) => total + review.score, 0) /
       movie.reviews.length
     ).toFixed(1.0);
-
-  console.log(averageRating);
 
   return (
     <main>
@@ -46,7 +44,7 @@ export const MoviesDetailsList = () => {
       <section>
         <div>
           <h1>AVALIAÇÕES</h1>
-          <button>
+          <button >
             <img src={estrela} alt="" /> Avaliar
           </button>
         </div>

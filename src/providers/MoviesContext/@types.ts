@@ -1,4 +1,5 @@
 import { ReactNode } from "react";
+import { FieldError } from "react-hook-form";
 
 export interface IMoviesProviderProps {
   children: React.ReactNode;
@@ -45,7 +46,7 @@ export interface IMoviesContext {
   handleUpdateReviews: (
     reviewId: number,
     formData: {
-      review: any;
+      review: FieldError;
     }
   ) => Promise<void>;
   handleMoviesDetails: (moviesId: number) => Promise<void>;
