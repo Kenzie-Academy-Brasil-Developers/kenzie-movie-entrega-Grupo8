@@ -18,7 +18,8 @@ export interface IMovie {
 
 export interface IMovieDetails {
   movie: IMovie;
-  reviews?: IReview[] | undefined;
+  
+  reviews: IReview[];
 }
 
 
@@ -31,6 +32,7 @@ export interface IReview {
   score: number;
   description: string;
   userName:string;
+  formData: IReview;
 };
 
 export interface IMoviesContext {

@@ -14,7 +14,7 @@ export const UserContext = createContext({} as IUserContext);
 
 export const UserProvider = ({ children }: IUserProviderProps) => {
   const [user, setUser] = useState<IUser | null>(null);
-  const [isOpen, setIsOpen] = useState(null);
+ 
 
   const [userName, setUserName] = useState<string | undefined>(undefined);
   const navigate = useNavigate();
@@ -81,8 +81,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
   return (
     <UserContext.Provider
       value={{
-        isOpen,
-        setIsOpen,
+      
         user,
         userSignUp,
         userLogIn,
