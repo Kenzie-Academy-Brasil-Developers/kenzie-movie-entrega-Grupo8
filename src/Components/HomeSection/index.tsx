@@ -6,10 +6,6 @@ export const HomeSection = () => {
       <ul>
         <HomeList />
       </ul>
-
-      <footer>
-        <h1>Todos os direitos reservados - Kenzie Academy Brasil</h1>
-      </footer>
     </section>
   );
 };

@@ -1,7 +1,7 @@
 export const Footer = () => {
     return(
-        <>
-            <p>Todos os direitos reservados - Kenzie Academy Brasil</p>;
-        </>
+        <footer>
+            <h4>Todos os direitos reservados - Kenzie Academy Brasil</h4>
+        </footer>
     );
 };

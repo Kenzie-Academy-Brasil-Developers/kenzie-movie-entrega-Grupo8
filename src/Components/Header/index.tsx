@@ -3,7 +3,11 @@ import { useContext} from "react";
 import { UserContext } from "../../providers/UserContext/UserContext";
 
 interface HeaderProps {
-  userLogout: () => void
+  userLogout: () => void;
+  to1: string;
+  text1: string;
+  to2: string;
+  text2: string
 }
 
 export const Header = ({}: HeaderProps) => {
