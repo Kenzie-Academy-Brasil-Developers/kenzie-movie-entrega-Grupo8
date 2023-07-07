@@ -8,11 +8,17 @@ export const App = () => {
   return (
     <>
       <MoviesProvider>
-        <Header to1={"/register"} text1={"Cadastre-se"} to2={"/login"} text2={"Entrar"} userLogout={function (): void {
-          throw new Error("Function not implemented.");
-        } }/>
+        <Header
+          to1={"/register"}
+          text1={"Cadastre-se"}
+          to2={"/login"}
+          text2={"Entrar"}
+          userLogout={function (): void {
+            throw new Error("Function not implemented.");
+          }}
+        />
         <RoutesMain />
-        <Footer/>
+        <Footer />
       </MoviesProvider>
     </>
   );
