@@ -7,14 +7,15 @@ export const HomeList = () => {
   const { movies } = useContext(MoviesContext);
 
   return (
-    <div>
+    <ul className="w-12/12 bg-slate-800 flex flex-wrap justify-evenly items-center">
       {movies.map((movie: IMovie) => (
+       
         <HomeCards
           key={movie.id}
-          movie={{ ...movie, image: movie.image ?? "" }} handleMoviesDetails={function (): void {
+          movie={{...movie, image: movie.image ?? "" }} handleMoviesDetails={function (): void {
             throw new Error("Function not implemented.");
           } }        />
       ))}
-    </div>
+    </ul>
   );
 };
