@@ -4,6 +4,7 @@ import { ReviewsSection } from "../../ReviewsSection";
 import estrela from "../../../../assets/estrela.svg";
 import { FormCreateReview } from "../../../FormCreateReview";
 import { Modal } from "../../../Modal";
+import { FormUpdateReview } from "../../../FormUpDateReview";
 
 export const MoviesDetailsList = () => {
   const {
@@ -72,6 +73,13 @@ export const MoviesDetailsList = () => {
                   >
                     Editar
                   </button>
+                  {isOpen ? (
+                    <Modal>
+                      <h2>Editar Avaliação</h2>
+                      <FormUpdateReview />     
+                    </Modal>
+                  ) : null}
+
                   <button
                     id={upDateReviews[0].id.toString()}
                     onClick={() => handleDelete(upDateReviews[0].id)}

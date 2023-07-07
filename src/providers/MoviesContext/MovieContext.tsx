@@ -29,7 +29,7 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
 
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [upDateReviews, setUpDateReviews] = useState<IReview[]>([]);
-  console.log
+  console.log(upDateReviews);
 
 
   /* Listar todos os Filmes */
