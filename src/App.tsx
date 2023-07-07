@@ -1,4 +1,4 @@
-
+import "./index.css";
 import { Footer } from "./components/Footer";
 import { Header } from "./components/Header";
 import { MoviesProvider } from "./providers/MoviesContext/MovieContext";
