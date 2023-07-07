@@ -4,6 +4,9 @@ export default {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
+    borderRadius:{
+      '4xl':'2.5rem'
+    },
     extend: {
       backgroundColor: {
         'default': '#171717',

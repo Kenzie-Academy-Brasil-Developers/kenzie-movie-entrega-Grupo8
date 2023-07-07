@@ -14,11 +14,12 @@ export const MoviesDetailsList = () => {
     upDateReviews,
     handleDelete,
      } = useContext(MoviesContext);
-  console.log("MoviesDetailsList", upDateReviews);
+  
 
-  if (!moviesDetails) {
+  if (!moviesDetails?.length) {
     return <div>Carregando detalhes do filme...</div>;
   }
+  console.log(moviesDetails)
 
   const movie = moviesDetails[0];
 
@@ -101,7 +102,7 @@ export const MoviesDetailsList = () => {
               </button>
               {isOpen ? (
                 <Modal>
-                  <h1>Avaliação</h1>
+                  
                   <FormCreateReview />
                 </Modal>
               ) : null}
