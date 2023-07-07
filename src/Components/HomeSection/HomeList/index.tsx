@@ -7,7 +7,7 @@ export const HomeList = () => {
   const { movies } = useContext(MoviesContext);
 
   return (
-    <ul className="w-12/12 bg-slate-800 flex flex-wrap justify-evenly items-center">
+    <ul className="container mx-auto max-w-1320bg-transparent flex flex-wrap justify-evenly items-center">
       {movies.map((movie: IMovie) => (
        
         <HomeCards
