@@ -1,9 +1,7 @@
 import React from "react";
-import { MovieCardProps } from "../../Section/MoviesSection/MovieCard/@types";
 import estrela from "../../../assets/estrela.svg";
-import { MoviesContext } from "../../../providers/MoviesContext/MovieContext";
+import { MovieCardProps } from "../../Section/MoviesSection/MovieCard/@types.ts";
 
-// ver map da avalicao
 
 export const HomeCards: React.FC<MovieCardProps> = ({ movie }) => {
   

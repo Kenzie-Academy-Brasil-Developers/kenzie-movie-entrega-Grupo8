@@ -1,4 +1,4 @@
-import { TRegisterFormValues } from "../../components/FormRegister/formRegisterSchema";
+import { TRegisterFormValues } from "../../Components/FormRegister/formRegisterSchema";
 
 export interface IUserProviderProps {
     children: React.ReactNode;

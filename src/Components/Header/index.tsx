@@ -10,7 +10,7 @@ interface HeaderProps {
   text2: string;
 }
 
-export const Header = ({ userLogout, to1, text1, to2, text2 }: HeaderProps) => {
+export const Header = ({ userLogout, text1, text2 }: HeaderProps) => {
   const { firstLetter, user } = useContext(UserContext);
 
   return (

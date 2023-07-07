@@ -1,4 +1,4 @@
-import { IReview } from "../../../../providers/MoviesContext/@types";
+import { IReview } from "../../../../providers/MoviesContext/@types.ts";
 
 export interface Movie {
   id: number;
