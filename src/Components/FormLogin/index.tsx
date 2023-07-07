@@ -14,7 +14,7 @@ export const FormLogin = () => {
     userLogIn(LoginData);
   };
   return (
-    <form className='z-10' onSubmit={handleSubmit(submit)} noValidate>
+    <form className='bg-zinc-900 max-w-md h-80 absolute top-1/3 left-24' onSubmit={handleSubmit(submit)} noValidate>
 
       <h2 className='text-white'>Login</h2>
 
