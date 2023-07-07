@@ -6,7 +6,7 @@ export const ReviewsList = () => {
   const { moviesDetails } = useContext(MoviesContext);
  
 
-  if (moviesDetails === null) {
+  if (!moviesDetails?.length) {
     return null;
   }
 
