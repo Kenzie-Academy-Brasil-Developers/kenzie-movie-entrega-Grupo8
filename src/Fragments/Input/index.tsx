@@ -11,7 +11,7 @@ export const Input = forwardRef<HTMLInputElement, IInputProps >(
       return (
          <div>
             {label ? <label htmlFor={rest.name}>{label}</label> : null}
-            <input id={rest.name} name={rest.name} ref={ref} type="text" {...rest} />
+            <input className="bg-zinc-700" id={rest.name} name={rest.name} ref={ref} type="text" {...rest} />
             {error ? <p>{error.message}</p> : null}
          </div>
       );
