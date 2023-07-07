@@ -14,7 +14,10 @@ export const FormLogin = () => {
     userLogIn(LoginData);
   };
   return (
-    <form onSubmit={handleSubmit(submit)} noValidate>
+    <form className='z-10' onSubmit={handleSubmit(submit)} noValidate>
+
+      <h2 className='text-white'>Login</h2>
+
       <Input
        
         type="email"

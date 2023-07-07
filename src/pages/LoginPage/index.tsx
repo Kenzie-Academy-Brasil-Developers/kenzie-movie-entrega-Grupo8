@@ -1,12 +1,11 @@
-import { FormLogin } from "../../components/FormLogin";
+
+import { FormLogin } from "../../Components/FormLogin";
 import { BackgroundImage } from "../../Fragments/Image";
 
 export const LoginPage = () => {
   return (
-    <main>
+    <BackgroundImage>
       <FormLogin />
-
-      <BackgroundImage />
-    </main>
+    </BackgroundImage>
   );
 };

@@ -1,11 +1,15 @@
-import React from "react"
+import React, { Children } from "react"
 
-export const BackgroundImage: React.FC = () => {
+interface IbackgroundImageProps {
+    children: React.ReactNode;
+}
+
+export const BackgroundImage = ({children}: IbackgroundImageProps) => {
     return(
-        <div className="fixed inset-0 overflow-hidden flex items-start">
-            <img src="./src/assets/Rectangle13.png" alt="Imagem de fundo"
-                className="w-full h-full object-cover z-0"
-            />
+        <div className="w-full min-h-screen absolute top-0 left-0 bg-cover bg-center"
+            style={{backgroundImage:"url('./src/assets/Rectangle13.png')"}}
+        >
+            {children}
         </div>
     )
 }
