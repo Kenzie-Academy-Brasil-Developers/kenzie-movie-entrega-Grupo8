@@ -1,35 +1,28 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import "./index.css";
+import { Footer } from "./components/Footer";
+import { Header } from "./components/Header";
+import { MoviesProvider } from "./providers/MoviesContext/MovieContext";
+import { RoutesMain } from "./routes/RoutesMain";
 
-function App() {
-  const [count, setCount] = useState(0)
-
+export const App = () => {
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+    <main className="bg-default text-white">
+      <MoviesProvider>
+        <Header
+          to1={"/register"}
+          text1={"Cadastre-se"}
+          to2={"/login"}
+          text2={"Entrar"}
+          userLogout={function (): void {
+            throw new Error("Function not implemented.");
+          }}
+        />
+        <RoutesMain />
+        <Footer />
+      </MoviesProvider>
+    </main>
     </>
-  )
-}
 
-export default App
+  );
+};
