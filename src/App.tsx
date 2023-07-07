@@ -7,6 +7,7 @@ import { RoutesMain } from "./routes/RoutesMain";
 export const App = () => {
   return (
     <>
+    <main className="bg-default">
       <MoviesProvider>
         <Header
           to1={"/register"}
@@ -20,6 +21,8 @@ export const App = () => {
         <RoutesMain />
         <Footer />
       </MoviesProvider>
+    </main>
     </>
+
   );
 };

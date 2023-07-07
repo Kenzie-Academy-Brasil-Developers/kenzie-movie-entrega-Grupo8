@@ -4,8 +4,12 @@ export default {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    extend: {},
-  },git
+    extend: {
+      backgroundColor: {
+        'default': '#171717',
+      },
+    },
+  },
   plugins: [],
 }
 
