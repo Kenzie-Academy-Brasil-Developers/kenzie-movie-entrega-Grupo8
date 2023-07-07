@@ -7,7 +7,7 @@ import { RoutesMain } from "./routes/RoutesMain";
 export const App = () => {
   return (
     <>
-    <main className="bg-default">
+    <main className="bg-default text-white">
       <MoviesProvider>
         <Header
           to1={"/register"}

@@ -23,13 +23,18 @@ export const MoviesDetailsList = () => {
 
   const movie = moviesDetails[0];
 
+  if (!movie || !movie.image) {
+    return <div>Filme sem imagem disponível.</div>;
+  }
+
+
   const averageRating =
   movie && movie.reviews && movie.reviews.length > 0
     ? (
         movie.reviews.reduce(
-          (total: any, review: { score: any }) => total + review.score,
+          (total: any, review: { score: any }) => total + Number(review.score),
           0
-        ) / movie.reviews.length
+        ) / Number(movie.reviews.length)
       ).toFixed(1)
     : 0;
 

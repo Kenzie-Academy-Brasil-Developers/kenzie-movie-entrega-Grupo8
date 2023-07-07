@@ -3,6 +3,8 @@ import { MoviesDetailsSection } from "../../components/Section/MoviesDetailsSect
 
 export const MovieDetailsPage = () => {
     return(
-        <><MoviesDetailsSection /></>
+        <main className="container mx-auto flex-wrap pl-2">
+        <MoviesDetailsSection />
+        </main>
     )
 }

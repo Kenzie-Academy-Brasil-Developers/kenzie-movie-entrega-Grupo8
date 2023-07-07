@@ -12,10 +12,8 @@ export const ReviewsList = () => {
 
   const movieReview = moviesDetails![0].reviews
 
-  
-
   return (
-    <div>
+    <div className="flex container mx-auto lg gap-4 flex-wrap">
       {movieReview.map((review) => (
         <ReviewsCard key={review.id} review={review} />
       ))}

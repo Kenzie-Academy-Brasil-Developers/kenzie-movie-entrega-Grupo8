@@ -14,7 +14,7 @@ export const Header = ({ userLogout, to1, text1, to2, text2 }: HeaderProps) => {
   const { firstLetter, user } = useContext(UserContext);
 
   return (
-    <header className="w-full bg-slate-800">
+    <header className="w-full bg-transparent">
       <div className="container mx-auto max-w-1320">
         <div className="flex items-center justify-between h-103 p-5">
           <div className="border-2 border-solid border-gray-400">
@@ -29,14 +29,14 @@ export const Header = ({ userLogout, to1, text1, to2, text2 }: HeaderProps) => {
                 <span className="text-white font-poppins text-17 font-normal leading-normal">
                   {user?.name}
                 </span>
-                <NavLink onClick={userLogout} to={""}>
+                <NavLink onClick={userLogout} to={""} className="text-white flex gap-4">
                   Sair
                 </NavLink>
               </div>
             ) : (
               <div className="text-white flex gap-4">
                 <NavLink to="/register">{text1}</NavLink>
-                <NavLink to="/login">{text2}</NavLink>
+                <NavLink to="/login" >{text2}</NavLink>
               </div>
             )}
           </div>
