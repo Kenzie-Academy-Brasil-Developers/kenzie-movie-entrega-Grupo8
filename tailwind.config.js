@@ -17,9 +17,13 @@ export default {
       },
       width:{
         'max-w-header':'1320px'
-      }
+      },
+      margin:{
+        '450px': '450px'
+      },
       
     },
+    
   },
   plugins: [],
 };
