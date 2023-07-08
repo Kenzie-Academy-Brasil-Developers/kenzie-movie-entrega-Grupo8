@@ -11,6 +11,9 @@ export default {
       backgroundColor: {
         'default': '#171717',
       },
+      fill:{
+        'fill':'#171717',
+      },
       height: {
         'footer': '119px',
         'cards': '4'

@@ -208,6 +208,7 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
         isOpen,
         setIsOpen,
         upDateReviews,
+        navigate,
       }}
     >
       {children}
