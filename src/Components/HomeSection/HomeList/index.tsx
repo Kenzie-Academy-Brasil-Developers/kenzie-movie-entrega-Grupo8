@@ -13,6 +13,8 @@ export const HomeList = () => {
           key={movie.id}
           movie={{ ...movie, image: movie.image ?? "" }} handleMoviesDetails={function (): void {
             throw new Error("Function not implemented.");
+          } } isStyled={false} handleStylePhoto={function (): void {
+            throw new Error("Function not implemented.");
           } }        />
       ))}
     </ul>

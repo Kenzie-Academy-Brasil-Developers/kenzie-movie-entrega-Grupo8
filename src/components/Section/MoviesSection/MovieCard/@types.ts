@@ -7,10 +7,13 @@ export interface Movie {
   duration: string;
   image: string;
   score: number;
+  handleStylePhoto: (photoId: number) => void
 }
 
 export interface MovieCardProps {
   handleMoviesDetails: (movieId: number) => void;
+  isStyled: boolean;
+  handleStylePhoto: (photoId: number) => void
   movie: {
     image: string;
     score: React.ReactNode;
