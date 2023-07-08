@@ -13,11 +13,11 @@ export const Input = forwardRef<HTMLInputElement, IInputProps >(
             {label ? <label htmlFor={rest.name}>{label}</label> : null}
             <input
             
-            className="bg-zinc-700 appearance-none block w-full px-4 py-3 leading-tight text-gray-500
-            focus:bg-gray-500 border border-zinc-700 hover:border-amber-500"
+            className="bg-zinc-700 appearance-none block w-full px-4 py-3 leading-tight text-white
+            focus:tranparent border border-zinc-700 hover:border-yellow-500 placeholder:text-white font-bold text-base"
             
             id={rest.name} name={rest.name} ref={ref} type="text" {...rest} />
-            {error ? <p>{error.message}</p> : null}
+            {error ? <p className="text-red-500 text-sm mt-2 font-normal">{error.message}</p> : null}
          </div>
       );
    }
