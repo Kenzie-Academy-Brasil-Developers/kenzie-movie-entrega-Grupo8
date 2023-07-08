@@ -1,7 +1,7 @@
 
 export interface IMoviesProviderProps {
   children: React.ReactNode;
-};
+}
 
 export interface IMovie {
   score: React.ReactNode;
@@ -54,7 +54,7 @@ export interface IMoviesContext {
   handleUpdateReviews: (
     reviewId: number,
     formData: {
-      review: any;
+      review: never;
     }
   ) => Promise<void>;
   handleMoviesDetails: (moviesId: number) => Promise<void>;
