@@ -1,8 +1,8 @@
-import { MoviesSection } from "../../components/Section/MoviesSection";
+import { MoviesSection } from "../../Components/Section/MoviesSection";
 
 export const MoviesPage = () => {
   return (
-    <main className="container mx-auto flex-wrap pl-2">
+    <main className="bg-transparent w-10/12 flex items-center justify-center m-auto pt-[6.25rem]">
       <MoviesSection />
     </main>
   );

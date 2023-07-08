@@ -17,7 +17,8 @@
       {
         "duplicate-id-active": "off"
       }
-    ]
+    ],
+    "no-inline-styles": "off"
   },
   "browserslist": [
     "defaults",

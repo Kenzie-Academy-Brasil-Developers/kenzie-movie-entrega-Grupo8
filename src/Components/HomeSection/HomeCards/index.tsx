@@ -1,9 +1,7 @@
 import React from "react";
-import { MovieCardProps } from "../../Section/MoviesSection/MovieCard/@types";
 import estrela from "../../../assets/estrela.svg";
-import { MoviesContext } from "../../../providers/MoviesContext/MovieContext";
+import { MovieCardProps } from "../../Section/MoviesSection/MovieCard/@types.ts";
 
-// ver map da avalicao
 
 export const HomeCards: React.FC<MovieCardProps> = ({ movie }) => {
   
@@ -17,7 +15,7 @@ export const HomeCards: React.FC<MovieCardProps> = ({ movie }) => {
 
         <div className="flex justify-between">
           <p className="rounded-4xl border-2 border-yellow-500 text-md font-bold w-18 mb-4 text-center text-black bg-yellow-500">{movie.type}</p>
-          <p className="text-gray-500">{`${movie.duration} min`}</p>
+          <p className="text-gray-500">{`${movie.duration}m`}</p>
         </div>
 
         <div className="flex  justify-between">

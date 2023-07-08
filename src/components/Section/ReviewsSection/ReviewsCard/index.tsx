@@ -6,9 +6,9 @@ import estrela from "../../../../assets/estrela.svg";
 export const ReviewsCard = ({ review }: { review: IReview }) => {
   const { firstLetter } = useContext(UserContext);
   return (
-    <ul className="w-413 h-510">
-      <li className="w-43 h-43 rounded-full bg-yellow-500">
-        <span className="text-white font-poppins text-17 font-semibold  w-43 h-43">
+    <ul className="min-w-413 min-h-510 flex-col  flex-wrap">
+      <li className="w rounded-full bg-yellow-500">
+        <span className="text-white font-poppins text-17 font-semibold ">
           {firstLetter}
         </span>
       </li>
@@ -16,7 +16,7 @@ export const ReviewsCard = ({ review }: { review: IReview }) => {
         <img src={estrela} alt="estrela da avaliação" />
         {review.score}
       </li>
-      <li className="w-320">
+      <li className="">
         <p className="font-family-inter text-base">{review.description}</p>
       </li>
       <li>{review.userName}</li>
