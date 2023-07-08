@@ -6,7 +6,6 @@ import estrelaPreta from "../../../../assets/estrelaPreta.svg";
 import { FormCreateReview } from "../../../FormCreateReview";
 import { Modal } from "../../../Modal";
 import { FormUpdateReview } from "../../../FormUpDateReview";
-import { useNavigate } from "../../../../../node_modules/react-router-dom/dist/index";
 
 export const MoviesDetailsList = () => {
   const { moviesDetails, isOpen, setIsOpen, upDateReviews, handleDelete,navigate } =
