@@ -6,16 +6,14 @@ export const ReviewsList = () => {
   const { moviesDetails } = useContext(MoviesContext);
  
 
-  if (moviesDetails === null) {
+  if (!moviesDetails?.length) {
     return null;
   }
 
   const movieReview = moviesDetails![0].reviews
 
-  
-
   return (
-    <div>
+    <div className="flex container mx-auto lg gap-4 flex-wrap">
       {movieReview.map((review) => (
         <ReviewsCard key={review.id} review={review} />
       ))}

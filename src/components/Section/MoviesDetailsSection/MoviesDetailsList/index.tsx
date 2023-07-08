@@ -7,48 +7,59 @@ import { Modal } from "../../../Modal";
 import { FormUpdateReview } from "../../../FormUpDateReview";
 
 export const MoviesDetailsList = () => {
-  const {
-    moviesDetails,
-    isOpen,
-    setIsOpen,
-    upDateReviews,
-    handleDelete,
-     } = useContext(MoviesContext);
-  console.log("MoviesDetailsList", upDateReviews);
+  const { moviesDetails, isOpen, setIsOpen, upDateReviews, handleDelete } =
+    useContext(MoviesContext);
 
-  if (!moviesDetails) {
+  if (!moviesDetails?.length) {
     return <div>Carregando detalhes do filme...</div>;
   }
+  console.log(moviesDetails);
 
   const movie = moviesDetails[0];
 
-  const averageRating =
-  movie && movie.reviews && movie.reviews.length > 0
-    ? (
-        movie.reviews.reduce(
-          (total: any, review: { score: any }) => total + review.score,
-          0
-        ) / movie.reviews.length
-      ).toFixed(1)
-    : 0;
+  if (!movie || !movie.image) {
+    return <div>Filme sem imagem disponível.</div>;
+  }
 
+  const averageRating =
+    movie && movie.reviews && movie.reviews.length > 0
+      ? (
+          movie.reviews.reduce(
+            (total: any, review: { score: any }) =>
+              total + Number(review.score),
+            0
+          ) / Number(movie.reviews.length)
+        ).toFixed(1)
+      : 0;
 
   return (
-    <main>
-      <section>
-        <div key={movie.id}>
-          <img src={movie.image} alt={movie.name} />
-          <div>
+    <main className="w-full">
+      <section className="">
+        <div key={movie.id} className="">
+          <img
+            src={movie.image}
+            alt={movie.name}
+            className="w-full rounded-4xl z-0"
+          />
+        </div>
+      </section>
+      <section className="bg-transparent w-10/12 m-auto -mt-[76px]">
+        <div className="">
+          <div className="flex justify-between">
             <p>{movie.type}</p>
-            <span>{movie.duration}</span>
+            <span>{`${movie.duration}m`}</span>
           </div>
-          <div>
-            <h1>{movie.name}</h1>
-            <div>
+
+          <div className="flex justify-between">
+            <h1 className=" text-white font-poppins text-60 font-bold">{movie.name}</h1>
+            <div className="flex items-center gap-3">
               <img src={estrela} alt="avaliação dos usuários " />
               <span>{averageRating}</span>
             </div>
           </div>
+        </div>
+
+        <div className="mt-[66px]">
           <div>
             <p>{movie.synopsis}</p>
           </div>
@@ -57,7 +68,7 @@ export const MoviesDetailsList = () => {
       <section>
         <div>
           <h1>AVALIAÇÕES</h1>
-          
+
           {upDateReviews && upDateReviews.length > 0 ? (
             <section>
               <div>
@@ -76,7 +87,7 @@ export const MoviesDetailsList = () => {
                   {isOpen ? (
                     <Modal>
                       <h2>Editar Avaliação</h2>
-                      <FormUpdateReview />     
+                      <FormUpdateReview />
                     </Modal>
                   ) : null}
 
@@ -96,7 +107,6 @@ export const MoviesDetailsList = () => {
               </button>
               {isOpen ? (
                 <Modal>
-                  <h1>Avaliação</h1>
                   <FormCreateReview />
                 </Modal>
               ) : null}

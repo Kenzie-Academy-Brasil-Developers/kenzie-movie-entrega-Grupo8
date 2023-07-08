@@ -15,22 +15,16 @@ export const MoviesContext = createContext({} as IMoviesContext);
 
 export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
   const { user } = useContext(UserContext);
-
   const navigate = useNavigate();
 
-
   const [isOpen, setIsOpen] = useState(false)
-
-  const [movies, setMovies] = useState<IMovie[]>([]);
- 
-  const [reviews, setReviews] = useState<IReview[]>([]);
- 
+  const [movies, setMovies] = useState<IMovie[]>([]); 
+  const [reviews, setReviews] = useState<IReview[]>([]); 
+  console.log('reviews',reviews)
+  
   const [moviesDetails, setMoviesDetails] = useState<IMovieDetails[]>([]);
-
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [upDateReviews, setUpDateReviews] = useState<IReview[]>([]);
-  console.log(upDateReviews);
-
 
   /* Listar todos os Filmes */
 
@@ -43,7 +37,6 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
         const { data } = await api.get(`/movies/${movie.id}?_embed=reviews`);
         movie.reviews = data.reviews;
       }
-
       setMovies(movies);
     } catch (error) {
       console.error("Error retrieving movies:", error);
@@ -58,9 +51,7 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
   const handleMoviesDetails = async (moviesId: number) => {  
     try {
       const token = localStorage.getItem("@kenzieMovies:token")?.replace(/"/g, "");
-      const { data } = await api.get(`/movies/${moviesId}?_embed=reviews`);
-
-  
+      const { data } = await api.get(`/movies/${moviesId}?_embed=reviews`);  
       const updatedReviews = await Promise.all(
         data.reviews.map(async (review: IReview) => {
        
@@ -68,10 +59,8 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
             headers: {
               Authorization: `Bearer ${token}`,
             },
-          });
-      
-          let userName = userResponse.data.name;
-     
+          });      
+          let userName = userResponse.data.name;  
 
           if (userName === 'anomino') {
             userName = 'Usuário Anônimo';

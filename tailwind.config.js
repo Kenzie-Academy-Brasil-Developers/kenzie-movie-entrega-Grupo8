@@ -11,8 +11,16 @@ export default {
       backgroundColor: {
         'default': '#171717',
       },
+      height: {
+        'footer': '119px',
+        'cards': '4'
+      },
+      width:{
+        'max-w-header':'1320px'
+      }
+      
     },
   },
   plugins: [],
-}
+};
 

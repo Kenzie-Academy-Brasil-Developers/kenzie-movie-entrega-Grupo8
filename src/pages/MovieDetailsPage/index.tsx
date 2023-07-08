@@ -1,8 +1,10 @@
-import { MoviesDetailsSection } from "../../components/Section/MoviesDetailsSection"
+import { MoviesDetailsSection } from "../../Components/Section/MoviesDetailsSection"
 
 
 export const MovieDetailsPage = () => {
     return(
-        <><MoviesDetailsSection /></>
+        <main className="container mx-auto flex-wrap pl-2">
+        <MoviesDetailsSection />
+        </main>
     )
 }

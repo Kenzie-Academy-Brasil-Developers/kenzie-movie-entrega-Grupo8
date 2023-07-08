@@ -8,7 +8,7 @@ import { createContext, useEffect, useState } from "react";
 import { api } from "../../service/api";
 import { Slide, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { TRegisterFormValues } from "../../components/FormRegister/formRegisterSchema";
+import { TRegisterFormValues } from "../../Components/FormRegister/formRegisterSchema";
 
 export const UserContext = createContext({} as IUserContext);
 
@@ -66,8 +66,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
 
   useEffect(() => {
     const userJSON = localStorage.getItem("@kenzieMovies:user");
-    if (userJSON) {
-    }
+    if (userJSON) { /* empty */ }
   }, [user]);
 
   const userLogout = () => {
