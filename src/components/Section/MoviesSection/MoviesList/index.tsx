@@ -18,7 +18,7 @@ export const MoviesList = () => {
           handleMoviesDetails={handleMoviesDetails}
           isStyled={false}
           // eslint-disable-next-line @typescript-eslint/no-unused-vars
-          handleStylePhoto={(_photoId: number) => {
+          handleStylePhoto={() => {
             // Implemente o código necessário para estilizar a foto específica aqui
           }}
         />
