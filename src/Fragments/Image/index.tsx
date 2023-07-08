@@ -6,7 +6,7 @@ interface IbackgroundImageProps {
 
 export const BackgroundImage = ({children}: IbackgroundImageProps) => {
     return(
-        <div className="w-full min-h-screen top-0 left-0 bg-cover bg-center"
+        <div className="min-h-screen flex flex-col justify-center bg-no-repeat bg-cover"
             style={{backgroundImage:"url('./src/assets/Rectangle13.png')"}}
         >
             {children}
