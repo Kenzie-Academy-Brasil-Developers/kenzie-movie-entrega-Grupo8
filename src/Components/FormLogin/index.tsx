@@ -4,7 +4,7 @@ import { useContext } from 'react';
 import { Input } from '../../Fragments/Input';
 import { TLoginFormValues, formLoginSchema } from './formLoginSchema';
 import { zodResolver } from "@hookform/resolvers/zod";
-
+import { Anchor } from '../../Fragments/Anchor';
 export const FormLogin = () => {
   const { userLogIn } = useContext(UserContext);
   const { register, handleSubmit, formState: { errors } } = useForm<TLoginFormValues>({
@@ -14,9 +14,9 @@ export const FormLogin = () => {
     userLogIn(LoginData);
   };
   return (
-    <form className='bg-zinc-900 max-w-md h-80 absolute top-1/3 left-24' onSubmit={handleSubmit(submit)} noValidate>
+    <form className='bg-zinc-900 mx-auto max-w-md py-8 px-10 shandow rounded-lg ' onSubmit={handleSubmit(submit)} noValidate>
 
-      <h2 className='text-white'>Login</h2>
+      <h2 className='text-white mb-8'>Login</h2>
 
       <Input
        
@@ -32,7 +32,11 @@ export const FormLogin = () => {
         {...register("password")}
         error={errors.password}
       />
-      <button type='submit'>Entrar</button>
+      <button className='mt-2 bg-amber-500 py-2 px-10' type='submit'>Entrar</button>
+
+      <p>ou</p>
+
+      <Anchor to={"/register"} text='Cadastre-se' />
     </form>
   );
 
