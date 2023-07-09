@@ -7,12 +7,13 @@ export const HomeList = () => {
   const { movies } = useContext(MoviesContext);
 
   return (
-    <ul className="container mx-auto max-w-1320bg-transparent flex flex-wrap justify-evenly items-center">
+    <ul className="container mx-auto max-w-1320 bg-transparent flex flex-wrap justify-center gap-14 items-center">
       {movies.map((movie: IMovie) => (
-       
         <HomeCards
           key={movie.id}
-          movie={{...movie, image: movie.image ?? "" }} handleMoviesDetails={function (): void {
+          movie={{ ...movie, image: movie.image ?? "" }} handleMoviesDetails={function (): void {
+            throw new Error("Function not implemented.");
+          } } isStyled={false} handleStylePhoto={function (): void {
             throw new Error("Function not implemented.");
           } }        />
       ))}

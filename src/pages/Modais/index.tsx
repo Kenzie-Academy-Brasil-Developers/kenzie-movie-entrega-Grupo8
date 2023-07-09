@@ -1,7 +1,7 @@
 import { ReactNode, useContext, useRef } from "react";
 import { MoviesContext } from "../../providers/MoviesContext/MovieContext";
-import { useKeyDown } from "../../components/Hooks/useKeyDown";
-import { useOutClick } from "../../components/Hooks/useOutClick";
+import { useKeyDown } from "../../Components/Hooks/useKeyDown";
+import { useOutClick } from "../../Components/Hooks/useOutClick";
 
 
 

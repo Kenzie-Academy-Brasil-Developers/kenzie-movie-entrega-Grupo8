@@ -1,4 +1,4 @@
-import { HomeSection } from "../../components/HomeSection/index"
+import { HomeSection } from "../../Components/HomeSection/index"
 
 export const HomePage = () => {
     return(

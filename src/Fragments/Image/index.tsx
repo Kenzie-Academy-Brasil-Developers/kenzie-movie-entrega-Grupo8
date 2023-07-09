@@ -1,14 +1,12 @@
-import React, { Children } from "react"
-
 interface IbackgroundImageProps {
-    children: React.ReactNode;
+  children: React.ReactNode;
 }
 
 export const BackgroundImage = ({children}: IbackgroundImageProps) => {
     return(
-        <div className="w-full min-h-screen top-0 left-0 bg-cover bg-center"
-            style={{backgroundImage:"url('./src/assets/Rectangle13.png')"}}
-        >
+        <div className="flex flex-col justify-center bg-no-repeat overflow-y:hidden h-[97vh] bg-fixed"
+            style={{backgroundImage:"url('./src/assets/Rectangle13.svg')"}}
+        >       
             {children}
         </div>
     )
