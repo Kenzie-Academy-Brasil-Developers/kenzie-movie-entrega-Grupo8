@@ -80,8 +80,8 @@ export const MoviesDetailsList = () => {
       } else { 
         return (
           <div>
-            <button onClick={() => setIsOpen(true)}>
-              <img src={estrela} alt="" /> Avaliar
+            <button onClick={() => setIsOpen(true)} className="rounded-4xl border-2 border-yellow-500 text-md font-bold w-[120px] h-[40px] mb-4 mt-2 flex items-center justify-center text-center text-black bg-yellow-500">
+              <img src={estrelaPreta} alt="" /> Avaliar
             </button>
             {isOpen ? (
               <Modal>
@@ -105,7 +105,7 @@ export const MoviesDetailsList = () => {
             />
           </div>
         </section>
-        <section className="bg-transparent w-10/12 m-auto -mt-[76px]">
+        <section className="bg-transparent w-10/12 mt-[15px] m-auto md:-mt-[125px]">
           <div className="">
             <div className="flex justify-between">
               <p>{movie.type}</p>
@@ -124,13 +124,13 @@ export const MoviesDetailsList = () => {
           </div>
   
           <div className="mt-[66px]">
-            <div>
-              <p>{movie.synopsis}</p>
+            <div className="w-4/4 md:w-3/4 text-justify md:mt-[20px] mr-1 ml-1 md:ml-0">
+              <p className="md:mt-[20px]">{movie.synopsis}</p>
             </div>
           </div>
         </section>
         <section>
-          <div>
+          <div className="mt-[60px] container mx-auto sm:px-1 lg:px-1 max-w-[1280px] flex flex-col md:flex-row items-center justify-between ">
             <h1>AVALIAÇÕES</h1>
             {renderReviewOptions()}
           </div>
