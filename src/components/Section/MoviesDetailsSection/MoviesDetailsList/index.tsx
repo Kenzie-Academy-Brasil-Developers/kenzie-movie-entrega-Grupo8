@@ -34,92 +34,233 @@ export const MoviesDetailsList = () => {
         ).toFixed(1)
       : 0;
 
-  return (
-    <main className="w-full">
-      <section className="">
-        <div key={movie.id} className="">
-          <img
-            src={movie.image}
-            alt={movie.name}
-            className=" w-full rounded-4xl z-0"
-          />
-        </div>
-      </section>
-      <section className="mb-[101px] container mx-auto sm:px-1 lg:px-1 max-w-[1320px] lg:-mt-[125px]">
-        <div className="">
-          <div className="flex justify-between items-center">
-            <p className=" mt-5 sm:mt-0 flex items-center justify-center w-[100px] h-[32px] lg:w-[170px] lg:h-[50px] rounded-4xl border-2-yellow bg-yellow-500 text-black font-bold flex-row">{movie.type}</p>
-            <span className="mt-5 sm:mt-0 text-gray-400">{`${movie.duration}m`}</span>
-          </div>
 
-          <div className="mt-5 sm:mt-0 flex justify-between items-center">
-            <h1 className=" text-white font-poppins lg:text-[50px] font-bold">{movie.name}</h1>
-            <div className=" flex items-center gap-3">
-              <img src={estrela} alt="avaliação dos usuários " />
-              <span className="font-bold sm:text-[21px]">{averageRating}</span>
-            </div>
-          </div>
-        </div>
 
-        <div className="mt-[66px]">
-          <div className="mr-2 sm:w-3/4">
-            <p className="text-justify">{movie.synopsis}</p>
-          </div>
-        </div>
-      </section>
-      <section className=" mt-[60px] mb-[101px] container mx-auto sm:px-1 lg:px-1 max-w-[1320px]">
-        <div className=" flex flex-wrap items-center justify-between">
-          <h1 className="sm:text-[24px] lx:text-[34px] lg:text-[44px]  font-bold">AVALIAÇÕES</h1>
+    // Modifiquei a partir daqui
 
-          {upDateReviews && upDateReviews.length > 0 ? (
-            <section>
+    const renderReviewOptions = () => {
+      if (upDateReviews && upDateReviews.length > 0) {
+        const review = upDateReviews[0];
+  
+        return (
+          <section>
+            <div>
+              <p>{review.description}</p>
               <div>
-                <p>{upDateReviews[0].description}</p>
-                <div>
-                  <img src={estrela} alt="estrela de avaliação" />
-                  <span>{upDateReviews[0].score}</span>
-                </div>
-                <div>
-                  <button
-                    id={upDateReviews[0].id.toString()}
-                    onClick={() => setIsOpen(true)}
-                  >
-                    Editar
-                  </button>
-                  {isOpen ? (
-                    <Modal>
-                      <h2>Editar Avaliação</h2>
-                      <FormUpdateReview />
-                    </Modal>
-                  ) : null}
-
-                  <button
-                    id={upDateReviews[0].id.toString()}
-                    onClick={() => handleDelete(upDateReviews[0].id)}
-                  >
-                    Excluir
-                  </button>
-                </div>
+                <img src={estrela} alt="estrela de avaliação" />
+                <span>{review.score}</span>
               </div>
-            </section>
-          ) : (
-            <div className=" flex items-center justify-center  w-[100px] h-[32px] lg:w-[170px] lg:h-[50px] rounded-4xl border-2-yellow bg-yellow-500 flex-row">
-              <button className="flex items-center font-poppins text-[15px] font-semibold text-black" onClick={() => setIsOpen(true)}>
-                <img className="" src={estrelaPreta} alt="" /> Avaliar
-              </button>
-              {isOpen ? (
-                <Modal>
-                  <FormCreateReview />
-                </Modal>
-              ) : null}
+              <div>
+                <button
+                  id={review.id.toString()}
+                  onClick={() => setIsOpen(true)}
+                >
+                  Editar
+                </button>
+                {isOpen ? (
+                  <Modal>
+                    <h2>Editar Avaliação</h2>
+                    <FormUpdateReview />
+                  </Modal>
+                ) : null}
+  
+                <button
+                  id={review.id.toString()}
+                  onClick={() => handleDelete(review.id)}
+                >
+                  Excluir
+                </button>
+              </div>
             </div>
-          )}
-        </div>
           </section>
-          <section className="container mx-auto sm:px-1 lg:px-1 max-w-[1320px]">
+        );
+      } else {
+        return (
+          <div>
+            <button onClick={() => setIsOpen(true)}>
+              <img src={estrela} alt="" /> Avaliar
+            </button>
+            {isOpen ? (
+              <Modal>
+                <h1 className="font-bold text-4xl mb-8">Avaliação</h1>
+                <FormCreateReview />
+              </Modal>
+            ) : null}
+          </div>
+        );
+      }
+    };
+  
+    return (
+      <main className="w-full">
+        <section className="">
+          <div key={movie.id} className="">
+            <img
+              src={movie.image}
+              alt={movie.name}
+              className="w-full rounded-4xl z-0"
+            />
+          </div>
+        </section>
+        <section className="bg-transparent w-10/12 m-auto -mt-[76px]">
+          <div className="">
+            <div className="flex justify-between">
+              <p>{movie.type}</p>
+              <span>{`${movie.duration}m`}</span>
+            </div>
+  
+            <div className="flex justify-between">
+              <h1 className=" text-white font-poppins text-60 font-bold">
+                {movie.name}
+              </h1>
+              <div className="flex items-center gap-3">
+                <img src={estrela} alt="avaliação dos usuários " />
+                <span>{averageRating}</span>
+              </div>
+            </div>
+          </div>
+  
+          <div className="mt-[66px]">
+            <div>
+              <p>{movie.synopsis}</p>
+            </div>
+          </div>
+        </section>
+        <section>
+          <div>
+            <h1>AVALIAÇÕES</h1>
+            {renderReviewOptions()}
+          </div>
+          <ReviewsSection />                        
+        </section>
+      </main>
+    );
+  };
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//   return (
+//     <main>
+//       <section>
+//         <div key={movie.id}>
+//           <img src={movie.image} alt={movie.name} />
+//           <div>
+//             <p>{movie.type}</p>
+//             <span>{movie.duration}</span>
+//           </div>
+//           <div>
+//             <h1>{movie.name}</h1>
+//             <div>
+//               <img src={estrela} alt="avaliação dos usuários " />
+//               <span>{averageRating}</span>
+//             </div>
+//           </div>
+//           <div>
+//             <p>{movie.synopsis}</p>
+//           </div>
+//         </div>
+//       </section>
+//       <section>
+//         <div>
+//           <h1>AVALIAÇÕES</h1>
           
-            <ReviewsSection />
-          </section>
-    </main>
-  );
-};
+//           {upDateReviews && upDateReviews.length > 0 ? (
+//             <section>
+//               <div>
+//                 <p>{upDateReviews[0].description}</p>
+//                 <div>
+//                   <img src={estrela} alt="estrela de avaliação" />
+//                   <span>{upDateReviews[0].score}</span>
+//                 </div>
+//                 <div>
+//                   <button
+//                     id={upDateReviews[0].id.toString()}
+//                     onClick={() => setIsOpen(true)}
+//                   >
+//                     Editar
+//                   </button>
+//                   {isOpen ? (
+//                     <Modal>
+//                       <h2>Editar Avaliação</h2>
+//                       <FormUpdateReview />     
+//                     </Modal>
+//                   ) : null}
+
+//                   <button
+//                     id={upDateReviews[0].id.toString()}
+//                     onClick={() => handleDelete(upDateReviews[0].id)}
+//                   >
+//                     Excluir
+//                   </button>
+//                 </div>
+//               </div>
+//             </section>
+//           ) : (
+//             <div>
+//               <button onClick={() => setIsOpen(true)}>
+//                 <img src={estrela} alt="" /> Avaliar
+//               </button>
+//               {isOpen ? (
+//                 <Modal>
+//                   <h1 className="font-bold text-4xl mb-8">Avaliação</h1>
+//                   <FormCreateReview />
+//                 </Modal>
+//               ) : null}
+//             </div>
+//           )}
+//         </div>
+//         <ReviewsSection />
+//       </section>
+//     </main>
+//   );
+// };

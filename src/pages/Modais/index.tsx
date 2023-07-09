@@ -27,7 +27,7 @@ export const Modal = ({ children }: { children: ReactNode }) => {
     <div role="dialog">
       <div ref={modalRef}>
         <button ref={buttonRef} onClick={handleClose}>
-          Fechar
+          X
         </button>
         {children}
       </div>

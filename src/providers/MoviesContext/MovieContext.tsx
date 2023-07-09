@@ -70,6 +70,7 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
         })
       );
   
+      
       const updatedMovie = { ...data, reviews: updatedReviews };
 
   
@@ -99,7 +100,7 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
         },
       });
   
-      setIsOpen(false)
+      // setIsOpen(false)
       
       setUpDateReviews(data);
   
@@ -107,6 +108,7 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
         transition: Slide,
         autoClose: 2000,
       });
+
 
     } catch (error) {
       toast.error("Ocorreu um erro ao tentar realizar a operação solicitada.", {
