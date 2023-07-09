@@ -120,7 +120,7 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
 
   const handleUpdateReviews = async (
     reviewId: number,
-    formData: { review: any }
+    formData: { review: never }
   ) => {  
    
       const token = localStorage.getItem("@kenzieMovies:token")?.replace(/"/g, "");
@@ -208,6 +208,7 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
         isOpen,
         setIsOpen,
         upDateReviews,
+        navigate,
       }}
     >
       {children}

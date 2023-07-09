@@ -15,7 +15,7 @@ export const Header = ({ text1, text2 }: HeaderProps) => {
   const { firstLetter, user, userLogout } = useContext(UserContext);
 
   return (
-    <header className="w-full bg-transparent flex-wrap fixed md:top-0">
+    <header className="w-full bg-transparent flex-wrap md:fixed md:top-0">
       <div className="container mx-auto sm:px-1 lg:px-1 max-w-[1320px] ">
         <div className="flex flex-col md:flex-row items-center justify-between h-103 p-5 flex-wrap">
           <img src={logoKenzie} alt="logo Kenzie" />

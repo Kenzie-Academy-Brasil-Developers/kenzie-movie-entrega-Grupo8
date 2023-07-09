@@ -14,7 +14,7 @@ export const HomeCards: React.FC<MovieCardProps> = ({ movie }) => {
         </div>
 
         <div className="flex justify-between">
-          <p className="rounded-4xl border-2 border-yellow-500 text-md font-bold w-18 mb-4 text-center text-black bg-yellow-500">{movie.type}</p>
+          <p className="rounded-4xl border-2 border-yellow-500 text-md font-bold w-[120px] h-[40px] flex items-center justify-center mb-4 mt-2 mb-4 text-center text-black bg-yellow-500">{movie.type}</p>
           <p className="text-gray-500">{`${movie.duration}m`}</p>
         </div>
 

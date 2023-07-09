@@ -7,7 +7,7 @@ export const MoviesList = () => {
   const { movies, handleMoviesDetails } = useContext(MoviesContext);
 
   return (
-    <section className="container mx-auto max-w-1320 bg-transparent flex flex-wrap justify-evenly items-center">
+    <section className="container mx-auto max-w-1320 bg-transparent flex flex-wrap justify-center gap-14 items-center">
       {movies.map((movie: IMovie) => (
         <MovieCard
           key={movie.id}
