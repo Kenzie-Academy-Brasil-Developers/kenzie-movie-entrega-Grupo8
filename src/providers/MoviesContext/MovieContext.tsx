@@ -25,6 +25,7 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
   const [moviesDetails, setMoviesDetails] = useState<IMovieDetails[]>([]);
   const [currentCardIndex, setCurrentCardIndex] = useState(0);
   const [upDateReviews, setUpDateReviews] = useState<IReview[]>([]);
+  console.log(upDateReviews)
 
   /* Listar todos os Filmes */
 
@@ -100,7 +101,7 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
         },
       });
   
-      // setIsOpen(false)
+      setIsOpen(false)
       
       setUpDateReviews(data);
   
