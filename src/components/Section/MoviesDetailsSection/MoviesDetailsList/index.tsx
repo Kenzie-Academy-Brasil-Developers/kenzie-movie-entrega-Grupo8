@@ -40,41 +40,44 @@ export const MoviesDetailsList = () => {
 
     const renderReviewOptions = () => {
       if (upDateReviews && upDateReviews.length > 0) {
-        const review = upDateReviews[0];
+        // const review = upDateReviews[0];
   
         return (
-          <section>
-            <div>
-              <p>{review.description}</p>
-              <div>
-                <img src={estrela} alt="estrela de avaliação" />
-                <span>{review.score}</span>
+          
+          <section>  
+            {upDateReviews.map((currentReview) => (
+              <div key={currentReview.id}>
+                <p>{currentReview.description}</p>
+                <div>
+                  <img src={estrela} alt="estrela de avaliação" />
+                  <span>{currentReview.score}</span>
+                </div>
+                <div>
+                  <button
+                    id={currentReview.id.toString()}
+                    onClick={() => setIsOpen(true)}
+                  >
+                    Editar
+                  </button>
+                  {isOpen ? (
+                    <Modal>
+                      <h2>Editar Avaliação</h2>
+                      <FormUpdateReview />
+                    </Modal>
+                  ) : null}
+    
+                  <button
+                    id={currentReview.id.toString()}
+                    onClick={() => handleDelete(currentReview.id)}
+                  >
+                    Excluir
+                  </button>
+                </div>
               </div>
-              <div>
-                <button
-                  id={review.id.toString()}
-                  onClick={() => setIsOpen(true)}
-                >
-                  Editar
-                </button>
-                {isOpen ? (
-                  <Modal>
-                    <h2>Editar Avaliação</h2>
-                    <FormUpdateReview />
-                  </Modal>
-                ) : null}
-  
-                <button
-                  id={review.id.toString()}
-                  onClick={() => handleDelete(review.id)}
-                >
-                  Excluir
-                </button>
-              </div>
-            </div>
+            ))}
           </section>
         );
-      } else {
+      } else { 
         return (
           <div>
             <button onClick={() => setIsOpen(true)}>
@@ -88,7 +91,7 @@ export const MoviesDetailsList = () => {
             ) : null}
           </div>
         );
-      }
+      }  
     };
   
     return (
@@ -138,129 +141,3 @@ export const MoviesDetailsList = () => {
   };
   
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//   return (
-//     <main>
-//       <section>
-//         <div key={movie.id}>
-//           <img src={movie.image} alt={movie.name} />
-//           <div>
-//             <p>{movie.type}</p>
-//             <span>{movie.duration}</span>
-//           </div>
-//           <div>
-//             <h1>{movie.name}</h1>
-//             <div>
-//               <img src={estrela} alt="avaliação dos usuários " />
-//               <span>{averageRating}</span>
-//             </div>
-//           </div>
-//           <div>
-//             <p>{movie.synopsis}</p>
-//           </div>
-//         </div>
-//       </section>
-//       <section>
-//         <div>
-//           <h1>AVALIAÇÕES</h1>
-          
-//           {upDateReviews && upDateReviews.length > 0 ? (
-//             <section>
-//               <div>
-//                 <p>{upDateReviews[0].description}</p>
-//                 <div>
-//                   <img src={estrela} alt="estrela de avaliação" />
-//                   <span>{upDateReviews[0].score}</span>
-//                 </div>
-//                 <div>
-//                   <button
-//                     id={upDateReviews[0].id.toString()}
-//                     onClick={() => setIsOpen(true)}
-//                   >
-//                     Editar
-//                   </button>
-//                   {isOpen ? (
-//                     <Modal>
-//                       <h2>Editar Avaliação</h2>
-//                       <FormUpdateReview />     
-//                     </Modal>
-//                   ) : null}
-
-//                   <button
-//                     id={upDateReviews[0].id.toString()}
-//                     onClick={() => handleDelete(upDateReviews[0].id)}
-//                   >
-//                     Excluir
-//                   </button>
-//                 </div>
-//               </div>
-//             </section>
-//           ) : (
-//             <div>
-//               <button onClick={() => setIsOpen(true)}>
-//                 <img src={estrela} alt="" /> Avaliar
-//               </button>
-//               {isOpen ? (
-//                 <Modal>
-//                   <h1 className="font-bold text-4xl mb-8">Avaliação</h1>
-//                   <FormCreateReview />
-//                 </Modal>
-//               ) : null}
-//             </div>
-//           )}
-//         </div>
-//         <ReviewsSection />
-//       </section>
-//     </main>
-//   );
-// };
