@@ -3,7 +3,7 @@ import { MoviesList } from "./MoviesList"
 export const MoviesSection = () =>{
     
     return(
-        <section>
+        <section className="">
             <MoviesList/>
         </section>
     )

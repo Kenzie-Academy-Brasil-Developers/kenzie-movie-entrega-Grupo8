@@ -4,8 +4,10 @@ import { BackgroundImage } from "../../Fragments/Image";
 
 export const LoginPage = () => {
   return (
-    <BackgroundImage>
-      <FormLogin />
-    </BackgroundImage>
+    <div className=" overflow-hidden overflow-y-scroll h-88vh">
+      <BackgroundImage>
+       <FormLogin />
+      </BackgroundImage>
+    </div>  
   );
 };
