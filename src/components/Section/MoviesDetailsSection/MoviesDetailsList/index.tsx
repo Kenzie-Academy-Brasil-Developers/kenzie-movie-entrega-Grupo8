@@ -45,31 +45,31 @@ export const MoviesDetailsList = () => {
           />
         </div>
       </section>
-      <section className="bg-transparent w-10/12 m-auto -mt-[125px]">
+      <section className="mb-[101px] container mx-auto sm:px-1 lg:px-1 max-w-[1320px] lg:-mt-[125px]">
         <div className="">
-          <div className="flex justify-between">
-            <p className="flex items-center justify-center w-[170px] h-[50px] rounded-4xl border-2-yellow bg-yellow-500 text-black font-bold flex-row">{movie.type}</p>
-            <span className="text-gray-400">{`${movie.duration}m`}</span>
+          <div className="flex justify-between items-center">
+            <p className=" mt-5 sm:mt-0 flex items-center justify-center w-[100px] h-[32px] lg:w-[170px] lg:h-[50px] rounded-4xl border-2-yellow bg-yellow-500 text-black font-bold flex-row">{movie.type}</p>
+            <span className="mt-5 sm:mt-0 text-gray-400">{`${movie.duration}m`}</span>
           </div>
 
-          <div className="flex justify-between">
-            <h1 className=" text-white font-poppins text-[50px] font-bold">{movie.name}</h1>
-            <div className="flex items-center gap-3">
+          <div className="mt-5 sm:mt-0 flex justify-between items-center">
+            <h1 className=" text-white font-poppins lg:text-[50px] font-bold">{movie.name}</h1>
+            <div className=" flex items-center gap-3">
               <img src={estrela} alt="avaliação dos usuários " />
-              <span className="font-bold text-[21px]">{averageRating}</span>
+              <span className="font-bold sm:text-[21px]">{averageRating}</span>
             </div>
           </div>
         </div>
 
         <div className="mt-[66px]">
-          <div className="w-[938px]">
-            <p>{movie.synopsis}</p>
+          <div className="mr-2 sm:w-3/4">
+            <p className="text-justify">{movie.synopsis}</p>
           </div>
         </div>
       </section>
       <section className=" mt-[60px] mb-[101px] container mx-auto sm:px-1 lg:px-1 max-w-[1320px]">
-        <div className="flex items-center justify-between">
-          <h1 className="text-[44px] font-bold">AVALIAÇÕES</h1>
+        <div className=" flex flex-wrap items-center justify-between">
+          <h1 className="sm:text-[24px] lx:text-[34px] lg:text-[44px]  font-bold">AVALIAÇÕES</h1>
 
           {upDateReviews && upDateReviews.length > 0 ? (
             <section>
@@ -103,8 +103,8 @@ export const MoviesDetailsList = () => {
               </div>
             </section>
           ) : (
-            <div className=" flex items-center justify-center w-[170px] h-[50px] rounded-4xl border-2-yellow bg-yellow-500 flex-row">
-              <button className="flex items-center font-poppins text-[17px] font-semibold text-black" onClick={() => setIsOpen(true)}>
+            <div className=" flex items-center justify-center  w-[100px] h-[32px] lg:w-[170px] lg:h-[50px] rounded-4xl border-2-yellow bg-yellow-500 flex-row">
+              <button className="flex items-center font-poppins text-[15px] font-semibold text-black" onClick={() => setIsOpen(true)}>
                 <img className="" src={estrelaPreta} alt="" /> Avaliar
               </button>
               {isOpen ? (

@@ -19,7 +19,7 @@ export default {
         'cards': '4'
       },
       width:{
-        'max-w-header':'1320px'
+        'max-w-header':'82.5rem',
       },
       margin:{
         '450px': '450px'
