@@ -9,7 +9,7 @@ export const ReviewsCard = ({ review }: { review: IReview }) => {
    
     <ul className="my-[10px] mx-[5px] flex-initial w-[413px] min-h-[510px] h-max overflow-auto gap-6 flex-col flex items-center flex-wrap  hover:shadow-lg hover:shadow-yellow-600 ">
       
-        <span className="text-white font-poppins text-[32px] mt-6 font-semibold flex items-center justify-center w-[81px] h-[81px] rounded-4xl border-2-yellow bg-yellow-500 border border-red-200 border-red-500">
+        <span className="text-white font-poppins text-[32px] mt-6 font-semibold flex items-center justify-center w-[81px] h-[81px] rounded-4xl border-2-yellow bg-yellow-500 border">
           {firstLetter}
         </span>
       
