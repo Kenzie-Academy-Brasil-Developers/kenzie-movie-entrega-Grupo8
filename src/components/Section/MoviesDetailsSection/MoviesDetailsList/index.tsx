@@ -78,7 +78,7 @@ export const MoviesDetailsList = () => {
         return (
           <div>
             <button onClick={() => setIsOpen(true)}>
-              <img src={estrela} alt="" /> Avaliar
+              <img src={estrelaPreta} alt="" /> Avaliar
             </button>
             {isOpen ? (
               <Modal>
