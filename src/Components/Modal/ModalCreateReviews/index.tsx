@@ -4,7 +4,7 @@ import { useKeyDown } from "../../Hooks/useKeyDown";
 import { useOutClick } from "../../Hooks/useOutClick";
 
 
-export const Modal = ({ children }: { children: ReactNode }) => {
+export const ModalCreateReviews = ({ children }: { children: ReactNode }) => {
   const { setIsOpen } = useContext(MoviesContext);
   
 
