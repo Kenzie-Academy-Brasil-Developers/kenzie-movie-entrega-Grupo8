@@ -9,7 +9,7 @@ export const ReviewsList = () => {
     return null;
   }
 
-  const movieReview = moviesDetails![0].reviews;
+  const movieReview = moviesDetails?.[0].reviews;
 
   return (
     <div className="flex  justify-evenly flex-wrap container mx-auto lg gap-4 ">

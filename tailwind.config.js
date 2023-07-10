@@ -4,30 +4,37 @@ export default {
     "./src/**/*.{js,jsx,ts,tsx}",
   ],
   theme: {
-    borderRadius:{
-      '4xl':'2.5rem'
+    borderRadius: {
+      '4xl': '2.5rem',
     },
     extend: {
       backgroundColor: {
-        'default': '#171717',
+        default: '#171717',
       },
-      fill:{
-        'fill':'#171717',
+      backgroundImage: {
+        'login-image': "url('./src/assets/Rectangle13.svg')",
       },
-      height: {
-        'footer': '119px',
-        'cards': '4'
+      backgroundRepeat: {
+        'no-repeat': 'no-repeat',
       },
-      width:{
-        'max-w-header':'82.5rem',
+      backgroundSize: {
+        cover: 'cover',
       },
-      margin:{
-        '450px': '450px'
+      fill: {
+        fill: '#171717',
       },
-      
+      minHeight: {
+        footer: '119px',
+      },
+      width: {
+        'max-w-header': '82.5rem',
+      },
+      margin: {
+        '450px': '450px',
+      },
     },
-    
   },
   plugins: [],
 };
+
 

@@ -3,18 +3,39 @@ import { MoviesContext } from "../../../../providers/MoviesContext/MovieContext"
 import { ReviewsSection } from "../../ReviewsSection";
 import estrela from "../../../../assets/estrela.svg";
 import estrelaPreta from "../../../../assets/estrelaPreta.svg";
+import delet from "../../../../assets/delet.svg";
+import edit from "../../../../assets/edit.svg";
 import { FormCreateReview } from "../../../FormCreateReview";
-import { Modal } from "../../../Modal";
+import { Modal } from "../../../Modal/ModalCreateReviews";
 import { FormUpdateReview } from "../../../FormUpDateReview";
+import { UserContext } from "../../../../providers/UserContext/UserContext";
+import { IReview } from "../../../../providers/MoviesContext/@types";
 
 export const MoviesDetailsList = () => {
-  const { moviesDetails, isOpen, setIsOpen, upDateReviews, handleDelete,navigate } =
-    useContext(MoviesContext);
+  const {
+    moviesDetails,
+    isOpen,
+    setIsOpen,
+    handleDelete,
+    navigate,
+    isOpenUpDate,
+    setIsOpenUpDate
+
+  } = useContext(MoviesContext);
+  const { user } = useContext(UserContext);
+  
+  function findReviewByUserId(userID: number | undefined): IReview | undefined {
+    const movieDetails = moviesDetails?.find((movie) =>
+      movie.reviews.some((review) => review.userId === userID)
+    );
+    return movieDetails?.reviews.find((review) => review.userId === userID);
+  }
+
+  const review = findReviewByUserId(user?.id);
 
   if (!moviesDetails?.length) {
-    navigate("/movies")
+    navigate("/movies");
     return <div>Carregando detalhes do filme...</div>;
-
   }
 
   const movie = moviesDetails[0];
@@ -34,86 +55,29 @@ export const MoviesDetailsList = () => {
         ).toFixed(1)
       : 0;
 
-
-
-    // Modifiquei a partir daqui
-
-    const renderReviewOptions = () => {
-      if (upDateReviews && upDateReviews.length > 0) {
-        // const review = upDateReviews[0];
-  
-        return (
-          
-          <section>  
-            {upDateReviews.map((currentReview) => (
-              <div key={currentReview.id}>
-                <p>{currentReview.description}</p>
-                <div>
-                  <img src={estrela} alt="estrela de avaliação" />
-                  <span>{currentReview.score}</span>
-                </div>
-                <div>
-                  <button
-                    id={currentReview.id.toString()}
-                    onClick={() => setIsOpen(true)}
-                  >
-                    Editar
-                  </button>
-                  {isOpen ? (
-                    <Modal>
-                      <h2>Editar Avaliação</h2>
-                      <FormUpdateReview />
-                    </Modal>
-                  ) : null}
-    
-                  <button
-                    id={currentReview.id.toString()}
-                    onClick={() => handleDelete(currentReview.id)}
-                  >
-                    Excluir
-                  </button>
-                </div>
-              </div>
-            ))}
-          </section>
-        );
-      } else { 
-        return (
-          <div>
-            <button onClick={() => setIsOpen(true)} className="rounded-4xl border-2 border-yellow-500 text-md font-bold w-[120px] h-[40px] mb-4 mt-2 flex items-center justify-center text-center text-black bg-yellow-500">
-              <img src={estrelaPreta} alt="" /> Avaliar
-            </button>
-            {isOpen ? (
-              <Modal>
-                <h1 className="font-bold text-4xl mb-8">Avaliação</h1>
-                <FormCreateReview />
-              </Modal>
-            ) : null}
-          </div>
-        );
-      }  
-    };
-  
-    return (
-      <main className="w-full">
-        <section className="">
-          <div key={movie.id} className="">
-            <img
-              src={movie.image}
-              alt={movie.name}
-              className="w-full rounded-4xl z-0"
-            />
-          </div>
-        </section>
-        <section className="bg-transparent w-10/12 mt-[15px] m-auto md:-mt-[125px]">
+  return (
+    <main>
+      <section className="w-screen ml-0 rounded-4xl z-0">
+        <div key={movie.id} className="">
+          <img
+            src={movie.image}
+            alt={movie.name}
+            className="w-screen rounded-4xl z-0"
+          />
+        </div>
+      </section>
+      <section className="w-screen ml-0 rounded-4xl z-0 mx-auto flex-wrap">
+        <section className="sm:px-1 lg:px-1 max-w-[1280px] bg-transparent w-10/12 mt-[15px] m-auto md:-mt-[125px]">
           <div className="">
             <div className="flex justify-between">
-              <p>{movie.type}</p>
-              <span>{`${movie.duration}m`}</span>
+              <p className="rounded-4xl border-2 border-yellow-500 text-md font-bold w-[120px] h-[40px] mb-4 mt-2 flex items-center justify-center text-center text-black bg-yellow-500">
+                {movie.type}
+              </p>
+              <span className="text-slate-400">{`${movie.duration}m`}</span>
             </div>
-  
+
             <div className="flex justify-between">
-              <h1 className=" text-white font-poppins text-60 font-bold">
+              <h1 className="text-white font-poppins sm:text-2xl lg:text-3xl xl:text-4xl font-bold">
                 {movie.name}
               </h1>
               <div className="flex items-center gap-3">
@@ -122,22 +86,86 @@ export const MoviesDetailsList = () => {
               </div>
             </div>
           </div>
-  
+
           <div className="mt-[66px]">
             <div className="w-4/4 md:w-3/4 text-justify md:mt-[20px] mr-1 ml-1 md:ml-0">
               <p className="md:mt-[20px]">{movie.synopsis}</p>
             </div>
           </div>
         </section>
-        <section>
-          <div className="mt-[60px] container mx-auto sm:px-1 lg:px-1 max-w-[1280px] flex flex-col md:flex-row items-center justify-between ">
-            <h1>AVALIAÇÕES</h1>
-            {renderReviewOptions()}
+        <section className="container mx-auto sm:px-1 lg:px-1 max-w-[1280px] flex flex-col md:flex-row items-center justify-between ">
+          <div className="container mx-auto my-[20px] sm:px-1 lg:px-1 max-w-[1380px] h-[100px] flex items-center">
+            <h1 className="text-2xl md:text-4xl font-bold"> Avaliações </h1>
           </div>
-          <ReviewsSection />                        
-        </section>
-      </main>
-    );
-  };
-  
+        </section> 
+        <section className="w-screen ">
 
+          <div className="w-screen  container mx-auto sm:px-1 lg:px-1 max-w-[1380px] flex flex-col md:flex-row items-center justify-between ">
+            {review ? (
+              <section className="w-11/12  sm:px-1 lg:px-1 bg-transparent mt-[15px] m-auto">
+                    <div className="container sm:px-1 lg:px-1 max-w-[1380px] h-[60px] flex items-start">
+                      <p>Sua avaliação</p>
+                    </div>
+                <div
+                  key={review.id}
+                  className=" container lg:px-10 max-w-[1380px] flex md:flex-row items-center justify-between "
+                >
+                  <div className="sm:px-1 lg:px-1 max-w-[666px] min-h-[108px] ">
+                    <div className="flex items-center">
+                      <p className="pl-[50px]">{review.description}</p>
+                    </div>
+                  </div>
+                  <div className="flex justify-between items-center gap-10 ">
+                    <div className="flex items-center gap-1">
+                      <img src={estrela} alt="estrela de avaliação" />
+                      <span>{review.score}</span>
+                    </div>
+                    <div className="flex justify-around items-center gap-2">
+                      <button
+                        id={review.id.toString()}
+                        onClick={() => setIsOpenUpDate(true)}
+                      >
+                        <img src={edit} alt="Botão para editar a avaliação" />
+                      </button>
+                      {isOpenUpDate ? (
+                        <Modal>
+                          <h1> Editar Avaliação </h1>
+                          <FormUpdateReview reviewId={review.id} />
+                        </Modal>
+                      ) : null}
+                      <button
+                        id={review.id.toString()}
+                        onClick={() => handleDelete(review.id)}
+                      >
+                        <img src={delet} alt="Botão para excluir a avaliação" />
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </section>
+            ) : (
+              <section className="mt-[60px] container mx-auto sm:px-1 lg:px-1 max-w-[1280px] flex flex-col md:flex-row items-center justify-between ">
+                <h1>AVALIAÇÕES</h1>
+                <button
+                  onClick={() => setIsOpen(true)}
+                  className="rounded-4xl border-2 border-yellow-500 text-md font-bold w-[120px] h-[40px] mb-4 mt-2 flex items-center justify-center text-center text-black bg-yellow-500"
+                >
+                  <img src={estrelaPreta} alt="" /> Avaliar
+                </button>
+              </section>
+            )}
+            {isOpen && (
+              <Modal>
+                <h1 className="font-bold text-4xl mb-8">Avaliação</h1>
+                <FormCreateReview />
+              </Modal>
+            )}
+          </div>
+        </section>
+        <section className="py-10">
+          <ReviewsSection />
+        </section>
+      </section>
+    </main>
+  );
+};

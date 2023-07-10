@@ -1,13 +1,15 @@
-
+import { Footer } from "../../Components/Footer";
 import { FormLogin } from "../../Components/FormLogin";
-import { BackgroundImage } from "../../Fragments/Image";
+
 
 export const LoginPage = () => {
   return (
-    <div className=" overflow-hidden overflow-y-scroll h-88vh">
-      <BackgroundImage>
-       <FormLogin />
-      </BackgroundImage>
+      <>
+    <div className="bg-login-image h-[100vh] flex items-center">
+      <FormLogin />
     </div>  
+    <Footer login={true}/>
+    </>
   );
 };
+

@@ -3,11 +3,8 @@ import { MoviesContext } from "../../providers/MoviesContext/MovieContext";
 import { useKeyDown } from "../../Components/Hooks/useKeyDown";
 import { useOutClick } from "../../Components/Hooks/useOutClick";
 
-
-
 export const Modal = ({ children }: { children: ReactNode }) => {
   const { setIsOpen } = useContext(MoviesContext);
-  
 
   const modalRef = useOutClick(() => {
     handleClose();

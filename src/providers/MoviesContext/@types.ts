@@ -1,4 +1,3 @@
-
 export interface IMoviesProviderProps {
   children: React.ReactNode;
 }
@@ -27,6 +26,7 @@ export interface IMovieDetails {
 }
 
 export interface IReview {
+  length: number;
   name: React.ReactNode;
   id: number;
   movieId: number;
@@ -38,9 +38,9 @@ export interface IReview {
   synopsis: string;
   reviews: string | number | object;
   image?: string | undefined;
-  upDateReviews: IReview[]
+  reviewId: number;
+  upDateReviews: IReview[];
 }
-
 
 export interface IMoviesContext {
   movies: IMovie[];
@@ -53,15 +53,13 @@ export interface IMoviesContext {
   createReview: (formData: IReview) => Promise<void>;
   handleUpdateReviews: (
     reviewId: number,
-    formData: {
-      review: never;
-    }
+    formData: { review: IReview }
   ) => Promise<void>;
   handleMoviesDetails: (moviesId: number) => Promise<void>;
   moviesDetails?: IMovieDetails[] | undefined;
+  navigate: any;
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  upDateReviews: IReview[];
-  navigate: any; 
+  isOpenUpDate: boolean;
+  setIsOpenUpDate: React.Dispatch<React.SetStateAction<boolean>>;
 }
-
