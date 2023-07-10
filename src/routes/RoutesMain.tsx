@@ -6,6 +6,7 @@ import { LoginPage } from "../pages/LoginPage";
 import { PublicRoutes } from "./PublicRoutes";
 import { MovieDetailsPage } from "../pages/MovieDetailsPage";
 import { ProtectedRoutes } from "./ProtectedRoutes";
+import { DashboardPage } from "../pages/DashboardPage";
 
 export const RoutesMain = () => {
   return (
@@ -14,6 +15,7 @@ export const RoutesMain = () => {
         <Route path="/" element={<HomePage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/register" element={<RegisterPage />} />
+        <Route path="/dashboard" element={<DashboardPage />} />
       </Route>
       <Route element={<ProtectedRoutes />}>
       <Route path="/movies" element={<MoviesPage />} />

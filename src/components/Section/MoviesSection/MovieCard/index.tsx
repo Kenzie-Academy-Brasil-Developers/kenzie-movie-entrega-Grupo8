@@ -29,7 +29,7 @@ export const MovieCard: React.FC<MovieCardProps> = ({
           src={movie.image}
           alt={movie.name}
           id={String(movie.id)}
-          className="bg-transparent rounded-4xl mb-4 "/* w-[400px] h-[210px] */
+          className="bg-transparent rounded-4xl mb-4"
         />
       </li>
       <li className="flex justify-between">
@@ -40,10 +40,10 @@ export const MovieCard: React.FC<MovieCardProps> = ({
       </li>
       <li className="flex  justify-between">
         <h3 className="text-white font-bold text-xl">{movie.name}</h3>
-        <li className="flex items-center gap-2 text-white font-bold">
+        <div className="flex items-center gap-2 text-white font-bold">
           <img src={estrela} alt="Estrela de Avaliação" />
           <p>{averageRating}</p>
-        </li>
+        </div>
       </li>
     </ul>
   );
