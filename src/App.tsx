@@ -1,9 +1,17 @@
 import "./index.css";
 import { Header } from "./Components/Header";
-import { MoviesProvider } from "./providers/MoviesContext/MovieContext";
+import { MoviesContext, MoviesProvider } from "./providers/MoviesContext/MovieContext";
 import { RoutesMain } from "./routes/RoutesMain";
+import { useContext } from "react";
+import { Loading } from "./Components/Loarding";
 
 export const App = () => {
+
+  const { isLoading } = useContext(MoviesContext)
+
+  if (isLoading) {
+    return <Loading />
+  }
   return (
     <>
     <main className="bg-default text-white">
