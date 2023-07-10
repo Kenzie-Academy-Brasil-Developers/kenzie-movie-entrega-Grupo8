@@ -2,3 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
+.active-navlink {
+    background-color: yellow;
+    color: white;
+  }

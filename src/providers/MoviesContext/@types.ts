@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export interface IMoviesProviderProps {
   children: React.ReactNode;
 }
@@ -46,8 +47,6 @@ export interface IMoviesContext {
   movies: IMovie[];
   reviews: IReview[];
   setMovies: React.Dispatch<React.SetStateAction<IMovie[]>>;
-  currentCardIndex: number;
-  setCurrentCardIndex: React.Dispatch<React.SetStateAction<number>>;
   getMovies: () => Promise<void>;
   handleDelete: (reviewId: number) => Promise<void>;
   createReview: (formData: IReview) => Promise<void>;
@@ -62,4 +61,6 @@ export interface IMoviesContext {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   isOpenUpDate: boolean;
   setIsOpenUpDate: React.Dispatch<React.SetStateAction<boolean>>;
+  isLoading: boolean;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 }

@@ -19,10 +19,11 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
 
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenUpDate, setIsOpenUpDate] = useState(false);
+  console.log('estado modal',isOpenUpDate )
   const [movies, setMovies] = useState<IMovie[]>([]);
   const [reviews, setReviews] = useState<IReview[]>([]);
   const [moviesDetails, setMoviesDetails] = useState<IMovieDetails[]>([]);
-  const [currentCardIndex, setCurrentCardIndex] = useState(0);
+  const [isLoading, setIsLoading] = useState(true);
 
   const getMovies = async () => {
     try {
@@ -73,6 +74,10 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
       navigate(`/movies/${moviesId}`);
     } catch (error) {
       console.error("Error fetching movie details:", error);
+    }finally {
+      if (isLoading) {
+        setIsLoading(false)
+      }
     }
   };
 
@@ -106,6 +111,10 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
         transition: Slide,
         autoClose: 2000,
       });
+    }finally {
+      if (isLoading) {
+        setIsLoading(false)
+      }
     }
   };
 
@@ -156,6 +165,10 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
         transition: Slide,
         autoClose: 2000,
       });
+    }finally {
+      if (isLoading) {
+        setIsLoading(false)
+      }
     }
   };
 
@@ -184,6 +197,10 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
         transition: Slide,
         autoClose: 2000,
       });
+    }finally {
+      if (isLoading) {
+        setIsLoading(false)
+      }
     }
   };
 
@@ -193,8 +210,6 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
         movies,
         reviews,
         setMovies,
-        currentCardIndex,
-        setCurrentCardIndex,
         getMovies,
         handleDelete,
         createReview,
@@ -206,6 +221,8 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
         navigate,
         isOpenUpDate,
         setIsOpenUpDate,
+        isLoading,
+        setIsLoading
       }}
     >
       {children}
