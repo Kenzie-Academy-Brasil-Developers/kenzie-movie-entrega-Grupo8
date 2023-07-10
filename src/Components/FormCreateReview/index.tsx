@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { MoviesContext } from "../../providers/MoviesContext/MovieContext";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { IReview } from "../../providers/MoviesContext/@types";
-import blackstar from "../../assets/blackstar.svg"
+import blackstar from "../../assets/blackstar.svg";
 
 export const FormCreateReview = () => {
   const { createReview } = useContext(MoviesContext);
@@ -13,16 +13,19 @@ export const FormCreateReview = () => {
     formState: { errors },
   } = useForm<IReview>();
 
+  
+
   const submit: SubmitHandler<IReview> = async (formData) => {
     createReview(formData);
   };
-
-
+  
+  
 
   return (
     <>
       <form className="flex flex-col" onSubmit={handleSubmit(submit)}>
-        <select className="bg-neutral-700 h-14 mb-8"
+        <select
+          className="bg-neutral-700 h-14 mb-8"
           {...register("score")}
           aria-invalid={errors.score ? "true" : "false"}
         >
@@ -38,14 +41,17 @@ export const FormCreateReview = () => {
           <option value="9">9</option>
           <option value="10">10</option>
         </select>
-        <textarea className="bg-neutral-700 mb-8 min-h-[12.5rem] max-h-[12.5rem] resize-none"
+        <textarea
+          className="bg-neutral-700 mb-8 min-h-[12.5rem] max-h-[12.5rem] resize-none"
           placeholder="Deixe um comentário"
           {...register("description")}
           aria-invalid={errors.description ? "true" : "false"}
         ></textarea>
         <button className="font-bold flex w-40 bg-amber-400 rounded-4xl h-14 font-bold text-base justify-center items-center justify-evenly text-black" type="submit">
-        <img src={blackstar} alt="incone de avaliação " />  Avaliar</button>
+        <img src={blackstar} alt="ícone de avaliação" />  Avaliar</button>
       </form>
     </>
   );
 };
+
+

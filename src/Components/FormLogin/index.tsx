@@ -15,8 +15,8 @@ export const FormLogin = () => {
     userLogIn(LoginData);
   };
   return (
-    <div className="container mx-auto sm:px-1 lg:px-1 max-w-[1320px]">
-      <form className='bg-zinc-900 mx-5 max-w-sm py-8 px-10 shandow rounded-lg' onSubmit={handleSubmit(submit)} noValidate>
+    <div className="container mx-auto sm:px-1 lg:px-1 max-w-[1320px] ">
+      <form className='bg-zinc-900 mx-5 max-w-sm py-8 px-10 rounded-[10px] hover:shadow-lg hover:shadow-yellow-600' onSubmit={handleSubmit(submit)} noValidate>
 
         <h2 className='text-white mb-8 font-bold text-5xl'>Login</h2>
 

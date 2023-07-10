@@ -1,10 +1,13 @@
-import { MoviesDetailsSection } from "../../Components/Section/MoviesDetailsSection"
-
+import { Footer } from "../../Components/Footer";
+import { MoviesDetailsSection } from "../../Components/Section/MoviesDetailsSection";
 
 export const MovieDetailsPage = () => {
-    return(
-        <main className="container mx-auto flex-wrap pl-2">
+  return (
+    <>
+      <main className="container flex-wrap">
         <MoviesDetailsSection />
-        </main>
-    )
-}
+      </main>
+      <Footer login={false} />
+    </>
+  );
+};

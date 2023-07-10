@@ -13,18 +13,17 @@ import { TRegisterFormValues } from "../../Components/FormRegister/formRegisterS
 export const UserContext = createContext({} as IUserContext);
 
 export const UserProvider = ({ children }: IUserProviderProps) => {
+  const [user, setUser] = useState<IUser | null>(
+    JSON.parse(localStorage.getItem("@kenzieMovies:user") as string)
+  );
 
-  const [user, setUser] = useState<IUser | null>(JSON.parse(localStorage.getItem("@kenzieMovies:user") as string));
-
-
-  
   const navigate = useNavigate();
 
   const userSignUp = async (formData: TRegisterFormValues) => {
     try {
       const response = await api.post("/users", formData);
       setUser(response.data.user);
-    
+
       toast.success("Cadastro efetuado com Sucesso!", {
         transition: Slide,
         autoClose: 2000,
@@ -42,7 +41,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
     try {
       const response = await api.post<IUserLogInResponse>("/login", formData);
       setUser(response.data.user);
-    
+
       localStorage.setItem("@kenzieMovies:token", response.data.accessToken);
       localStorage.setItem(
         "@kenzieMovies:user",
@@ -66,7 +65,9 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
 
   useEffect(() => {
     const userJSON = localStorage.getItem("@kenzieMovies:user");
-    if (userJSON) { /* empty */ }
+    if (userJSON) {
+      /* empty */
+    }
   }, [user]);
 
   const userLogout = () => {
