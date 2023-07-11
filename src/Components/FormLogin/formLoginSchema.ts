@@ -9,7 +9,7 @@ export const formLoginSchema = z
     password: z
       .string()
       .nonempty("A senha é obrigatório.")
-      .min(8,"A senha precisa conter pelo menos 6 caracteres.")
+      .min(8,"A senha precisa conter pelo menos 8 caracteres.")
       .regex(/(?=.*?[A-Z])/, "É necessario pelo menos uma letra maiúscula.")
       .regex(/(?=.*?[a-z])/, "É necessario pelo menos uma letra minúscula.")
       .regex(/(?=.*?[0-9])/, "É necessario pelo menos um número.")

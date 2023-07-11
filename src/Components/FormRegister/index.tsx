@@ -5,7 +5,7 @@ import { UserContext } from "../../providers/UserContext/UserContext";
 import { TRegisterFormValues, formRegisterSchema } from "./formRegisterSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { MoviesContext } from "../../providers/MoviesContext/MovieContext";
-import seta from "../../assets/Vector.png"
+import seta from "../../assets/Vector.png";
 
 export const FormRegister = () => {
   const { userSignUp } = useContext(UserContext);
@@ -85,9 +85,9 @@ export const FormRegister = () => {
           <div className="w-full md:w-1/2 p-2">
             <Input
               type="password"
-              placeholder="Confirme sua senha"
+              placeholder="Digite novamente sua senha"
               {...register("confirm")}
-              error={errors.password}
+              error={errors.confirm}
             />
           </div>
         </div>
