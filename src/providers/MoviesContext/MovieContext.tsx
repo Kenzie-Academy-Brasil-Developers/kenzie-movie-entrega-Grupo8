@@ -14,19 +14,21 @@ import { UserContext } from "../UserContext/UserContext";
 export const MoviesContext = createContext({} as IMoviesContext);
 
 export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
-  const { user } = useContext(UserContext);
+  const { user, isLoading, setIsLoading } = useContext(UserContext);
   const navigate = useNavigate();
 
   const [isOpen, setIsOpen] = useState(false);
   const [isOpenUpDate, setIsOpenUpDate] = useState(false);
-  console.log('estado modal',isOpenUpDate )
   const [movies, setMovies] = useState<IMovie[]>([]);
   const [reviews, setReviews] = useState<IReview[]>([]);
   const [moviesDetails, setMoviesDetails] = useState<IMovieDetails[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
+
+
+  
 
   const getMovies = async () => {
     try {
+      setIsLoading(true)
       const response = await api.get("/movies");
       const movies = response.data;
 
@@ -35,7 +37,9 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
         movie.reviews = data.reviews;
       }
       setMovies(movies);
+      setIsLoading(false)
     } catch (error) {
+      setIsLoading(false)
       console.error("Error retrieving movies:", error);
       setMovies([]);
     }
@@ -221,8 +225,6 @@ export const MoviesProvider = ({ children }: IMoviesProviderProps) => {
         navigate,
         isOpenUpDate,
         setIsOpenUpDate,
-        isLoading,
-        setIsLoading
       }}
     >
       {children}

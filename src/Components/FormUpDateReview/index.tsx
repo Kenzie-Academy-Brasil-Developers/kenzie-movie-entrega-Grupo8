@@ -52,7 +52,7 @@ export const FormUpdateReview = ({ reviewId }: { reviewId: number }) => {
           aria-invalid={errors.description ? "true" : "false"}
         ></textarea>
         <button
-          className="font-bold flex w-40 bg-amber-400 rounded-4xl h-14 font-bold text-base justify-center items-center justify-evenly text-black"
+          className="flex w-40 bg-amber-400 rounded-4xl h-14 font-bold text-base justify-center items-center  text-black"
           type="submit"
           onClick={() => handleClick(reviewId)} // Certifique-se de substituir 'reviewId' pelo valor correto
         >

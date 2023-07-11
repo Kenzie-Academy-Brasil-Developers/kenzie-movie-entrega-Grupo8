@@ -21,4 +21,7 @@ export interface IUserContext {
   userLogIn: (formData: TRegisterFormValues) => Promise<void>;
   userLogout: () => void;
   firstLetter: string | undefined;
+  
+  isLoading: boolean;
+  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 }
