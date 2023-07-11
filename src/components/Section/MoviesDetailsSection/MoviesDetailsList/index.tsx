@@ -35,7 +35,7 @@ export const MoviesDetailsList = () => {
 
   return (
     <main>
-      <section className="w-screen ml-0 rounded-4xl z-0">
+      <section className=" pt-[150px] w-screen ml-0 rounded-4xl z-0 md:pt-0">
         <div key={movie.id} className="">
           <img
             src={movie.image}
@@ -47,14 +47,14 @@ export const MoviesDetailsList = () => {
       <section className="w-screen ml-0 rounded-4xl z-0 mx-auto flex-wrap">
         <section className="sm:px-1 lg:px-1 max-w-[1280px] bg-transparent w-10/12 mt-[15px] m-auto md:-mt-[125px]">
           <div className="">
-            <div className="flex justify-between">
+            <div className="flex flex-col items-center sm:flex-row sm:justify-between flex-wrap">
               <p className="rounded-4xl border-2 border-yellow-500 text-md font-bold w-[120px] h-[40px] mb-4 mt-2 flex items-center justify-center text-center text-black bg-yellow-500">
                 {movie.type}
               </p>
               <span className="text-slate-400">{`${movie.duration}m`}</span>
             </div>
 
-            <div className="flex justify-between">
+            <div className="flex flex-col items-center sm:flex-row sm:justify-between flex-wrap">
               <h1 className="text-white font-poppins sm:text-2xl lg:text-3xl xl:text-4xl font-bold">
                 {movie.name}
               </h1>
