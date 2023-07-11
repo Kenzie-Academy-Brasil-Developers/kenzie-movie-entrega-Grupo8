@@ -4,9 +4,11 @@ import { ReviewsSection } from "../../ReviewsSection";
 import estrela from "../../../../assets/estrela.svg";
 import { Loading } from "../../../Loading";
 import { ManageReviews } from "../../../ManageReviews";
+import { UserContext } from "../../../../providers/UserContext/UserContext";
 
 export const MoviesDetailsList = () => {
-  const { moviesDetails, navigate, isLoading } = useContext(MoviesContext);
+  const { moviesDetails, navigate } = useContext(MoviesContext);
+  const {isLoading} = useContext(UserContext);
 
   if (!moviesDetails || (!moviesDetails.length && isLoading)) {
     navigate("/movies");
@@ -16,6 +18,7 @@ export const MoviesDetailsList = () => {
   const movie = moviesDetails[0];
 
   if (!movie || !movie.image) {
+    navigate("/movies");
     return <div>Filme sem imagem disponível.</div>;
   }
 

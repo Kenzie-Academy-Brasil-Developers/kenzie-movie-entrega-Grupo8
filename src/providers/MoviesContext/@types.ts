@@ -61,6 +61,4 @@ export interface IMoviesContext {
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
   isOpenUpDate: boolean;
   setIsOpenUpDate: React.Dispatch<React.SetStateAction<boolean>>;
-  isLoading: boolean;
-  setIsLoading: React.Dispatch<React.SetStateAction<boolean>>
 }

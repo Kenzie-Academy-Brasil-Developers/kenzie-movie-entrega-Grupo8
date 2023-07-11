@@ -1,26 +1,22 @@
-import './styles.module.css'
+import { StyledMain } from "./styles";
 
 export const Loading = () => {
   return (
-    <div className="bg-default text-white">
-      <span>L</span>
-      <span>O</span>
-      <span>A</span>
-      <span>D</span>
-      <span>I</span>
-      <span>N</span>
-      <span>G</span>
-      <div className="covers">
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
-        <span></span>
+    <StyledMain>
+      <section>
+      <div className="hand">
+        <span className="finger thumb"></span>
+        <span className="finger"></span>
+        <span className="finger"></span>
+        <span className="finger"></span>
+        <span className="finger"></span>
+        <span className="palm"></span>
       </div>
-    </div>
+
+      </section>
+      <div>
+        <p>Carregando...</p>
+      </div>
+    </StyledMain>
   );
 };
-
-

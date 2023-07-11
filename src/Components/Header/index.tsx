@@ -23,13 +23,13 @@ export const Header = ({ text1, text2 }: HeaderProps) => {
           <div className="w-full flex justify-between md:w-1/2 h-14  md:justify-end gap-9 mt-5 md:mt-2">
             {user?.name ? (
               <>
-                <div className="flex items-center md:justify-center gap-2 ">
+                <div className="flex flex-row items-center md:justify-center gap-3  ">
                   <span className="text-white font-poppins text-17 font-semibold flex items-center justify-center w-9 h-9 rounded-4xl  bg-yellow-500">
                     {firstLetter}
                   </span>
-                  <span className="text-white font-poppins text-17 font-normal leading-normal flex items-center justify-center ">
+                  <p className="text-white font-poppins text-17 font-normal leading-normal flex items-center justify-center ">
                     {user?.name}
-                  </span>
+                  </p>
                 </div>
                 <div className="flex items-center md:justify-center gap-2 ">
                   <NavLink

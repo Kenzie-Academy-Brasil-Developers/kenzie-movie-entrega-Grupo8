@@ -9,13 +9,19 @@ import { api } from "../../service/api";
 import { Slide, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { TRegisterFormValues } from "../../Components/FormRegister/formRegisterSchema";
+import { useGetMovies } from "../../Components/Hooks/useGetMovies";
 
 export const UserContext = createContext({} as IUserContext);
 
 export const UserProvider = ({ children }: IUserProviderProps) => {
+
+  const getMovies = useGetMovies();
+
+
   const [user, setUser] = useState<IUser | null>(
     JSON.parse(localStorage.getItem("@kenzieMovies:user") as string)
   );
+  const [isLoading, setIsLoading] = useState(false);
 
   const navigate = useNavigate();
 
@@ -30,7 +36,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
       });
       navigate("/login");
     } catch (error) {
-      toast.error("Ocorreu um erro ao tentar realizar a operação solicitada.", {
+      toast.error("Ocorreu um erro ao tentar se cadastrar.", {
         transition: Slide,
         autoClose: 2000,
       });
@@ -38,6 +44,7 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
   };
 
   const userLogIn = async (formData: TRegisterFormValues) => {
+    setIsLoading(true);
     try {
       const response = await api.post<IUserLogInResponse>("/login", formData);
       setUser(response.data.user);
@@ -52,12 +59,11 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
         autoClose: 2000,
       });
       navigate("/movies");
-      getMovies();
+      await getMovies(); // Chama getMovies corretamente
     } catch (error) {
-      toast.error("Ocorreu um erro ao tentar realizar a operação solicitada.", {
-        transition: Slide,
-        autoClose: 2000,
-      });
+      console.log(error);     
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -85,6 +91,8 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
         userLogIn,
         userLogout,
         firstLetter,
+        isLoading, 
+        setIsLoading,        
       }}
     >
       {children}
@@ -92,6 +100,3 @@ export const UserProvider = ({ children }: IUserProviderProps) => {
   );
 };
 
-function getMovies() {
-  throw new Error("Function not implemented.");
-}
