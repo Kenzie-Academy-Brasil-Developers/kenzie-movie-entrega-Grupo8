@@ -3,7 +3,7 @@ import { Header } from "./Components/Header";
 import { MoviesContext, MoviesProvider } from "./providers/MoviesContext/MovieContext";
 import { RoutesMain } from "./routes/RoutesMain";
 import { useContext } from "react";
-import { Loading } from "./Components/Loarding";
+import { Loading } from "./Components/Loading";
 
 export const App = () => {
 
@@ -25,7 +25,7 @@ export const App = () => {
             throw new Error("Function not implemented.");
           }}
         />
-        <RoutesMain />
+       <RoutesMain />
       </MoviesProvider>
     </main>
     </>

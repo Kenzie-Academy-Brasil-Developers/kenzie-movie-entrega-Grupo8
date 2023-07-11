@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { MoviesContext } from "../../../../providers/MoviesContext/MovieContext";
 import { ReviewsSection } from "../../ReviewsSection";
 import estrela from "../../../../assets/estrela.svg";
-import { Loading } from "../../../Loarding";
+import { Loading } from "../../../Loading";
 import { ManageReviews } from "../../../ManageReviews";
 
 export const MoviesDetailsList = () => {
