@@ -1,6 +1,7 @@
 import { NavLink } from "react-router-dom";
 import { useContext } from "react";
 import { UserContext } from "../../providers/UserContext/UserContext";
+import logoKenzie from "../../assets/kenziemovie.svg";
 
 interface HeaderProps {
   userLogout: () => void;
@@ -10,39 +11,47 @@ interface HeaderProps {
   text2: string;
 }
 
-export const Header = ({}: HeaderProps) => {
-  const { userLogout, firstLetter, user } = useContext(UserContext);
+export const Header = ({ text1, text2 }: HeaderProps) => {
+  const { firstLetter, user, userLogout } = useContext(UserContext);
 
   return (
-    <header className="w-full h-43">
-      <div className="w-full max-w-1328px h-43 flex flex-row items-center justify-between mx-auto">
-        <h2>kenziemovie</h2>
-        <div className="w-273 h-43 flex items-center justify-between">
-          {user?.name ? (
-            <>
-              <div>
-                <div className='flex items-center justify-between'>
-                  <span
-                  className="text-white font-poppins text-17 font-semibold flex items-center justify-center w-43 h-43 rounded-full bg-yellow-500"
-                  >
+    <header className="w-full bg-transparent flex-wrap fixed top-0">
+      <div className="container mx-auto sm:px-1 lg:px-1 max-w-[1320px] ">
+        <div className="flex flex-col md:flex-row items-center justify-between h-103 p-5 flex-wrap">
+          <img src={logoKenzie} alt="logo Kenzie" />
+
+          <div className="w-full flex justify-between md:w-1/2 h-14  md:justify-end gap-9 mt-5 md:mt-2">
+            {user?.name ? (
+              <>
+                <div className="flex flex-row items-center md:justify-center gap-3  ">
+                  <span className="text-white font-poppins text-17 font-semibold flex items-center justify-center w-9 h-9 rounded-4xl  bg-yellow-500">
                     {firstLetter}
                   </span>
-                  <span className="text-white font-poppins text-17 font-normal leading-normal color: '#FFF'" >{user?.name}</span>
+                  <p className="text-white font-poppins text-17 font-normal leading-normal flex items-center justify-center ">
+                    {user?.name}
+                  </p>
                 </div>
-                <NavLink onClick={userLogout} to={""}>Sair</NavLink>
-              </div>
-            </>
-          ) : (
-            <>
-              <NavLink to="/register">Register</NavLink>
-              <NavLink
-                to="/login"
-                className="inline-block w-114 h-43 left-1214 rounded-full bg"
-              >
-                Login
-              </NavLink>
-            </>
-          )}
+                <div className="flex items-center md:justify-center gap-2 ">
+                  <NavLink
+                    onClick={userLogout}
+                    to={"/"}
+                    className="text-white flex gap-4 items-center md:justify-center"
+                  >
+                    Sair
+                  </NavLink>
+                </div>
+              </>
+            ) : (
+              <>
+                <div className="flex items-center md:justify-center w-30 h-9 gap-2">
+                  <NavLink to="/register">{text1}</NavLink>
+                </div>
+                <div className="flex items-center justify-center gap-2 rounded-4xl w-20 h-9 bg-yellow-500 text-black ">
+                  <NavLink to="/login">{text2}</NavLink>
+                </div>
+              </>
+            )}
+          </div>
         </div>
       </div>
     </header>

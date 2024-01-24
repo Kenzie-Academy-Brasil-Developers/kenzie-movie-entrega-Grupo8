@@ -2,100 +2,82 @@ import { useContext } from "react";
 import { MoviesContext } from "../../../../providers/MoviesContext/MovieContext";
 import { ReviewsSection } from "../../ReviewsSection";
 import estrela from "../../../../assets/estrela.svg";
-import { FormCreateReview } from "../../../FormCreateReview";
-import { Modal } from "../../../Modal";
+import { Loading } from "../../../Loading";
+import { ManageReviews } from "../../../ManageReviews";
+import { UserContext } from "../../../../providers/UserContext/UserContext";
 
 export const MoviesDetailsList = () => {
-  const {
-    moviesDetails,
-    isOpen,
-    setIsOpen,
-    upDateReviews,
-    handleDelete,
-     } = useContext(MoviesContext);
-  console.log("MoviesDetailsList", upDateReviews);
+  const { moviesDetails, navigate } = useContext(MoviesContext);
+  const {isLoading} = useContext(UserContext);
 
-  if (!moviesDetails) {
-    return <div>Carregando detalhes do filme...</div>;
+  if (!moviesDetails || (!moviesDetails.length && isLoading)) {
+    navigate("/movies");
+    return <Loading />;
   }
 
   const movie = moviesDetails[0];
 
-  const averageRating =
-  movie && movie.reviews && movie.reviews.length > 0
-    ? (
-        movie.reviews.reduce(
-          (total: any, review: { score: any }) => total + review.score,
-          0
-        ) / movie.reviews.length
-      ).toFixed(1)
-    : 0;
+  if (!movie || !movie.image) {
+    navigate("/movies");
+    return <div>Filme sem imagem disponível.</div>;
+  }
 
+  const averageRating =
+    movie && movie.reviews && movie.reviews.length > 0
+      ? (
+          movie.reviews.reduce(
+            (total: any, review: { score: any }) =>
+              total + Number(review.score),
+            0
+          ) / Number(movie.reviews.length)
+        ).toFixed(1)
+      : 0;
 
   return (
     <main>
-      <section>
-        <div key={movie.id}>
-          <img src={movie.image} alt={movie.name} />
-          <div>
-            <p>{movie.type}</p>
-            <span>{movie.duration}</span>
-          </div>
-          <div>
-            <h1>{movie.name}</h1>
-            <div>
-              <img src={estrela} alt="avaliação dos usuários " />
-              <span>{averageRating}</span>
-            </div>
-          </div>
-          <div>
-            <p>{movie.synopsis}</p>
-          </div>
+      <section className=" pt-[150px] w-screen ml-0 rounded-4xl z-0 md:pt-0">
+        <div key={movie.id} className="">
+          <img
+            src={movie.image}
+            alt={movie.name}
+            className="w-screen rounded-4xl z-0"
+          />
         </div>
       </section>
-      <section>
-        <div>
-          <h1>AVALIAÇÕES</h1>
-          
-          {upDateReviews && upDateReviews.length > 0 ? (
-            <section>
-              <div>
-                <p>{upDateReviews[0].description}</p>
-                <div>
-                  <img src={estrela} alt="estrela de avaliação" />
-                  <span>{upDateReviews[0].score}</span>
-                </div>
-                <div>
-                  <button
-                    id={upDateReviews[0].id.toString()}
-                    onClick={() => setIsOpen(true)}
-                  >
-                    Editar
-                  </button>
-                  <button
-                    id={upDateReviews[0].id.toString()}
-                    onClick={() => handleDelete(upDateReviews[0].id)}
-                  >
-                    Excluir
-                  </button>
-                </div>
-              </div>
-            </section>
-          ) : (
-            <div>
-              <button onClick={() => setIsOpen(true)}>
-                <img src={estrela} alt="" /> Avaliar
-              </button>
-              {isOpen ? (
-                <Modal>
-                  <h1>Avaliação</h1>
-                  <FormCreateReview />
-                </Modal>
-              ) : null}
+      <section className="w-screen ml-0 rounded-4xl z-0 mx-auto flex-wrap">
+        <section className="sm:px-1 lg:px-1 max-w-[1280px] bg-transparent w-10/12 mt-[15px] m-auto md:-mt-[125px]">
+          <div className="">
+            <div className="flex flex-col items-center sm:flex-row sm:justify-between flex-wrap">
+              <p className="rounded-4xl border-2 border-yellow-500 text-md font-bold w-[120px] h-[40px] mb-4 mt-2 flex items-center justify-center text-center text-black bg-yellow-500">
+                {movie.type}
+              </p>
+              <span className="text-slate-400">{`${movie.duration}m`}</span>
             </div>
-          )}
-        </div>
-        <ReviewsSection />
+
+            <div className="flex flex-col items-center sm:flex-row sm:justify-between flex-wrap">
+              <h1 className="text-white font-poppins sm:text-2xl lg:text-3xl xl:text-4xl font-bold">
+                {movie.name}
+              </h1>
+              <div className="flex items-center gap-3">
+                <img src={estrela} alt="avaliação dos usuários " />
+                <span>{averageRating}</span>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-[66px]">
+            <div className="w-4/4 md:w-3/4 text-justify md:mt-[20px] mr-1 ml-1 md:ml-0">
+              <p className="md:mt-[20px]">{movie.synopsis}</p>
+            </div>
+          </div>
+        </section>
+        
+        <section className="bg-transparent w-10/12 mt-[15px] m-auto">
+          <ManageReviews />
+        </section>
+        <section className="py-10">
+          <ReviewsSection />
+        </section>
       </section>
     </main>
   );

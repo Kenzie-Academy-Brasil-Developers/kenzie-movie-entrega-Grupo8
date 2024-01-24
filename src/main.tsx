@@ -5,7 +5,7 @@ import { UserProvider } from "./providers/UserContext/UserContext";
 import { App } from "./App";
 
 
-ReactDOM.createRoot(document.getElementById("root") as HTMLElement).render(
+ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
     <BrowserRouter>
       <UserProvider>

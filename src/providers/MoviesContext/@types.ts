@@ -1,7 +1,7 @@
-
+/* eslint-disable @typescript-eslint/no-explicit-any */
 export interface IMoviesProviderProps {
   children: React.ReactNode;
-};
+}
 
 export interface IMovie {
   score: React.ReactNode;
@@ -27,6 +27,7 @@ export interface IMovieDetails {
 }
 
 export interface IReview {
+  length: number;
   name: React.ReactNode;
   id: number;
   movieId: number;
@@ -38,29 +39,26 @@ export interface IReview {
   synopsis: string;
   reviews: string | number | object;
   image?: string | undefined;
-  upDateReviews: IReview[]
+  reviewId: number;
+  upDateReviews: IReview[];
 }
-
 
 export interface IMoviesContext {
   movies: IMovie[];
   reviews: IReview[];
   setMovies: React.Dispatch<React.SetStateAction<IMovie[]>>;
-  currentCardIndex: number;
-  setCurrentCardIndex: React.Dispatch<React.SetStateAction<number>>;
   getMovies: () => Promise<void>;
   handleDelete: (reviewId: number) => Promise<void>;
   createReview: (formData: IReview) => Promise<void>;
   handleUpdateReviews: (
     reviewId: number,
-    formData: {
-      review: any;
-    }
+    formData: { review: IReview }
   ) => Promise<void>;
   handleMoviesDetails: (moviesId: number) => Promise<void>;
   moviesDetails?: IMovieDetails[] | undefined;
+  navigate: any;
   isOpen: boolean;
   setIsOpen: React.Dispatch<React.SetStateAction<boolean>>;
-  upDateReviews: IReview[]; 
+  isOpenUpDate: boolean;
+  setIsOpenUpDate: React.Dispatch<React.SetStateAction<boolean>>;
 }
-

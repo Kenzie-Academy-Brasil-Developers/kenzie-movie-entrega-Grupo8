@@ -1,8 +1,13 @@
-import { MoviesDetailsSection } from "../../Components/Section/MoviesDetailsSection"
-
+import { Footer } from "../../Components/Footer";
+import { MoviesDetailsSection } from "../../Components/Section/MoviesDetailsSection";
 
 export const MovieDetailsPage = () => {
-    return(
-        <><MoviesDetailsSection /></>
-    )
-}
+  return (
+    <>
+      <main className="container flex-wrap">
+        <MoviesDetailsSection />
+      </main>
+      <Footer login={false} />
+    </>
+  );
+};

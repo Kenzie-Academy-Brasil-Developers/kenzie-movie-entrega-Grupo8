@@ -1,4 +1,4 @@
-import { IReview } from "../../../../providers/MoviesContext/@types";
+import { IReview } from "../../../../providers/MoviesContext/@types.ts";
 
 export interface Movie {
   id: number;
@@ -7,10 +7,13 @@ export interface Movie {
   duration: string;
   image: string;
   score: number;
+  handleStylePhoto: (photoId: number) => void
 }
 
 export interface MovieCardProps {
   handleMoviesDetails: (movieId: number) => void;
+  isStyled: boolean;
+  handleStylePhoto: (photoId: number) => void
   movie: {
     image: string;
     score: React.ReactNode;
