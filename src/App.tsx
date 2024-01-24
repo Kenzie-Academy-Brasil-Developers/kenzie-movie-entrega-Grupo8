@@ -1,6 +1,6 @@
 import "./index.css";
-import { Footer } from "./components/Footer";
-import { Header } from "./components/Header";
+import { Footer } from "../src/Components/Footer";
+import { Header } from "../src/Components/Header";
 import { MoviesProvider } from "./providers/MoviesContext/MovieContext";
 import { RoutesMain } from "./routes/RoutesMain";
 

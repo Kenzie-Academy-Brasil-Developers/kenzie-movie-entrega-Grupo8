@@ -1,4 +1,4 @@
-import { MoviesSection } from "../../components/Section/MoviesSection";
+import { MoviesSection } from "../../Components/Section/MoviesSection";
 
 export const MoviesPage = () => {
   return (
