@@ -1,5 +1,5 @@
-import { Footer } from "../../Components/Footer";
-import { MoviesDetailsSection } from "../../Components/Section/MoviesDetailsSection";
+import { Footer } from "../../../src/components/Footer";
+import { MoviesDetailsSection } from "../.././components/Section/MoviesDetailsSection";
 
 export const MovieDetailsPage = () => {
   return (

@@ -1,5 +1,5 @@
-import { Footer } from "../../Components/Footer";
-import { FormLogin } from "../../Components/FormLogin";
+import { Footer } from "../../../src/components/Footer";
+import { FormLogin } from "../../../src/components/FormLogin";
 
 
 export const LoginPage = () => {

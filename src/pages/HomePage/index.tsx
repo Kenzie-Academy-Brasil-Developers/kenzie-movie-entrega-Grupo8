@@ -1,5 +1,5 @@
-import { Footer } from "../../Components/Footer"
-import { HomeSection } from "../../Components/HomeSection/index"
+import { Footer } from "../../../src/components/Footer"
+import { HomeSection } from "../../../src/components/HomeSection"
 
 export const HomePage = () => {
 

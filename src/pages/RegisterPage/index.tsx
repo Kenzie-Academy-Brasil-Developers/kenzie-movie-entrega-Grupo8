@@ -1,5 +1,5 @@
-import { Footer } from "../../Components/Footer";
-import { FormRegister } from "../../Components/FormRegister";
+import { Footer } from "../../components/Footer";
+import { FormRegister } from "../../../src/components/FormRegister";
 
 export const RegisterPage = () => {
   return (
