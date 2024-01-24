@@ -8,8 +8,8 @@ import { createContext, useEffect, useState } from "react";
 import { api } from "../../service/api";
 import { Slide, toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
-import { TRegisterFormValues } from "../../Components/FormRegister/formRegisterSchema";
-import { useGetMovies } from "../../Components/Hooks/useGetMovies";
+import { TRegisterFormValues } from "../../components/FormRegister/formRegisterSchema";
+import { useGetMovies } from "../../components/Hooks/useGetMovies";
 
 export const UserContext = createContext({} as IUserContext);
 

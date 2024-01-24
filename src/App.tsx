@@ -1,12 +1,12 @@
 import "./index.css";
-import { Header } from "./Components/Header";
+import { Header } from "./components/Header";
 import { MoviesProvider } from "./providers/MoviesContext/MovieContext";
 import { RoutesMain } from "./routes/RoutesMain";
 import { useContext } from "react";
-import { Loading } from "./Components/Loading";
+import { Loading } from "./components/Loading";
 import "react-toastify/dist/ReactToastify.css";
 import { UserContext } from "./providers/UserContext/UserContext";
-import { CustomToastContainer } from "./Components/CustomToastContainer/CustomToastContainer";
+import { CustomToastContainer } from "./components/CustomToastContainer/CustomToastContainer";
 
 export const App = () => {
   const { isLoading } = useContext(UserContext);

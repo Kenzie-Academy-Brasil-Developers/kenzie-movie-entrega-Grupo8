@@ -1,4 +1,4 @@
-import { Footer } from "../../Components/Footer";
+import { Footer } from "../../components/Footer";
 
 export const DashboardPage = () => {
   return (

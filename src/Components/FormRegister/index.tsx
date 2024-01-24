@@ -2,10 +2,10 @@ import { useContext } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
 import { Input } from "../../Fragments/Input";
 import { UserContext } from "../../providers/UserContext/UserContext";
-import { TRegisterFormValues, formRegisterSchema } from "./formRegisterSchema";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { MoviesContext } from "../../providers/MoviesContext/MovieContext";
 import seta from "../../assets/Vector.png";
+import { TRegisterFormValues, formRegisterSchema } from "./formRegisterSchema";
 
 export const FormRegister = () => {
   const { userSignUp } = useContext(UserContext);
